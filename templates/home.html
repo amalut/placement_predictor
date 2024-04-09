@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Link your custom CSS file -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
+    <!-- Include Firebase SDK script -->
+    <script src="https://www.gstatic.com/firebasejs/13.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/13.7.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/13.7.1/firebase-firestore.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBF-gktODbomUIyPOT_MWuGqxFwDP-Mx8I",
+            authDomain: "placementpredictor.firebaseapp.com",
+            databaseURL: "https://placementpredictor-default-rtdb.firebaseio.com",
+            projectId: "placementpredictor",
+            storageBucket: "placementpredictor.appspot.com",
+            messagingSenderId: "712644933317",
+            appId: "1:712644933317:web:1ffede201bcd0764c322ac",
+            measurementId: "G-WE3JELDMP5"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        window.firebaseApp = firebase.app();
+        window.auth = firebase.auth();
+        window.db = firebase.firestore();
+
+        // ... other JavaScript code ...
+    </script>
+    <script>
+        async function handlePredict(user_id) {
+            window.location.href = `/predict/${user_id}`;
+        }
+    </script>
+    <script>
+        async function aptitude_test() {
+            window.location.href = '/aptitude';
+        }
+
+        async function com_test() {
+            window.location.href = '/communication';
+        }
+    </script>
+    <script>
+        async function logout() {
+        try {
+            await firebase.auth().signOut();
+            window.location.href = '/';
+        } catch (error) {
+            console.error('Error logging out:', error);
+        }
+    }
+    </script>
+</head>
+<body>
+    <div class="menu">
+        <h1 class="logo mb-10 text-blue-600 text-3xl font-bold font-sans">Placement Predictor</h1>
+        <button class="menu-item">Courses</button>
+        <button class="menu-item menu-item-logout" onclick="logout()">Logout</button>
+    </div>
+    <div class="profile">
+        <h1 class="title">Profile</h1>
+        <img class="profile-img" src="{{ url_for('static', filename='images/Propic.jpg') }}" alt="profile img">
+        {% if userData %}
+            <p class="para-value">{{ userData.name }}</p>
+            <p class="para">Email: {{ userEmail }}</p>
+            {% if userData.age %}
+                <p class="para">Age: {{ userData.age }}</p>
+            {% endif %}
+            {% if userData.gender %}
+                <p class="para">Gender</p>
+                <p class="para-value">{{ userData.gender }}</p>
+            {% endif %}
+            {% if userData.dob %}
+                <p class="para">Date of Birth</p>
+                <p class="para-value">{{ userData.dob }}</p>
+            {% endif %}
+            {% if userData.college %}
+                <p class="para">College</p>
+                <p class="para-value">{{ userData.college }}</p>
+            {% endif %}
+            {% if userData.dept %}
+                <p class="para">Department</p>
+                <p class="para-value">{{ userData.dept }}</p>
+            {% endif %}
+            {% if userData.yop %}
+                <p class="para">Year OF PassOut</p>
+                <p class="para-value">{{ userData.yop }}</p>
+            {% endif %}
+            {% if userData.cgpa %}
+                <p class="para">CGPA</p>
+                <p class="para-value">{{ userData.cgpa }}</p>
+            {% endif %}
+            {% if userData.backlogs %}
+                <p class="para">Have backlogs?</p>
+                <p class="para-value">{{ userData.backlogs }}</p>
+            {% endif %}
+            {% if userData %}
+                <p class="para">Internships did</p>
+                <p class="para-value">{{ userData.num_internships }}</p>
+            {% endif %}
+            {% if userData.tenth %}
+                <p class="para">Tenth %</p>
+                <p class="para-value">{{ userData.tenth }}</p>
+            {% endif %}
+            {% if userData.twelth %}
+                <p class="para">Twelth % %</p>
+                <p class="para-value">{{ userData.twelth }}</p>
+            {% endif %}
+            {% if userData %}
+                <p class="para">Aptitude score % %</p>
+                <p class="para-value">{{ userData.aptitude }}</p>
+            {% endif %}
+            {% if userData %}
+                <p class="para">Communication score</p>
+                <p class="para-value">{{ userData.communication }}</p>
+                <p>{{user_id}}</p>
+            {% endif %}
+            <!-- Include other user data fields here -->
+        {% endif %}
+    </div>
+    <div class="profile-btn">
+        <button class="btn-1" onclick="aptitude_test()">Take Aptitude Test</button>
+        <button class="btn-2" onclick="com_test()">Take Communication Assessment</button>
+        <button class="btn-1" onclick="handlePredict('{{ user_id }}')">Predict</button>
+    </div>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Placement Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='form.css') }}">
+</head>
+<body>
+    <div class="menu1">
+        <h1 class="logo mb-10 text-blue-600 text-3xl font-bold font-sans">Placement Predictor</h1>
+    </div>
+    <p class="form-para">Enter Details</p>
+    <div class="div-form">
+        <form action="/submit_form/{{ user_id }}/{{ user_email }}" id="placementForm" method="POST">
+            <div class="col-container">
+                <div class="col1">
+                    <label class="form-label" for="name">Name</label>
+                    <input class="form-input" type="text" name="name" id="name" placeholder="Enter Name" required>
+                    <label class="form-label" for="dob">Date Of Birth</label>
+                    <input class="form-input" type="date" name="dob" id="dob" required>
+                    <label class="form-label" for="college">College Name</label>
+                    <input class="form-input" type="text" name="college" id="college" placeholder="Enter College Name" required>
+                    <label class="form-label" for="yop">Year Of Pass</label>
+                    <input class="small-input" type="month" name="yop" id="yop" required>
+                    <div>
+                        <label class="form-label">10th Score</label>
+                        <input class="small-input" type="number" name="tenth" id="tenth" required>
+                        <label class="form-label">12th Score</label>
+                        <input class="small-input" type="number" name="twelth" id="twelfth" required>
+                    </div>
+                    <label class="form-label" for="backlogs">Any Backlogs</label>
+                    <input class="form-input" type="number" name="backlogs" id="backlogs" required>
+                    <label class="form-label" for="num_internships">Number of Internships</label>
+                    <input class="form-input" type="number" name="num_internships" id="num_internships" required>
+                </div>
+                <div class="col1">
+                    <label class="form-label" for="age">Age</label>
+                    <input class="form-input" type="text" name="age" id="age" placeholder="Enter Age" required>
+                    <label class="form-label" for="gender">Gender</label>
+                    <select class="small-input" name="gender" id="gender" required>
+                        <option value="">Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <label class="form-label" for="dept">Department</label>
+                    <input class="form-input" type="text" name="dept" id="dept" placeholder="Enter Department" required>
+                    <label class="form-label" for="cgpa">Current CGPA</label>
+                    <input class="small-input" type="number" name="cgpa" id="cgpa" required step="0.01" required>
+                    <label class="form-label" for="linkedin">LinkedIn URL</label>
+                    <input class="form-input" type="text" name="linkedin" id="linkedin" placeholder="LinkedIn URL" required>
+                </div>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script src="form.js"></script> <!-- Make sure to link your JavaScript file here -->
+</body>
+</html>
