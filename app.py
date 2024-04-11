@@ -149,7 +149,9 @@ def result(prediction, pro, userData):
 def index():
     if request.method == 'POST':
         score = run_mcq_quiz(questions_list)
-        return render_template('aptitude/result.html', score=score, total=len(questions_list))
+        total=len(questions_list)
+        aptitude_score=score/total*10
+        return render_template('aptitude/result.html', score=score, aptitude_score=aptitude_score, total=total)
 
     return render_template('aptitude/quiz.html', questions=enumerate(questions_list, 1))
 
