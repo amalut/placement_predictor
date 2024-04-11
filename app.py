@@ -6,6 +6,9 @@ from firebase_admin import credentials, firestore, auth
 import requests
 import pandas as pd
 import pickle
+from mcq import app as mcq_app
+from mcq import questions_list
+from mcq import *
 
 app = Flask(__name__)
 
@@ -137,9 +140,14 @@ def predict(user_id):
 def result(name, prediction, pro):
     return render_template('result.html', name=name, prediction=prediction, pro=pro)
     
-@app.route('/aptitude')
-def aptitude():
-    return render_template('aptitude.html')
+    
+@app.route('/aptitude', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        score = run_mcq_quiz(questions_list)
+        return render_template('aptitude/result.html', score=score, total=len(questions_list))
+
+    return render_template('aptitude/quiz.html', questions=enumerate(questions_list, 1))
 
 @app.route('/communication')
 def communication():

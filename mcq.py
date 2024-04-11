@@ -60,13 +60,6 @@ questions_list = [
 ]
 
 random.shuffle(questions_list)
-@app.route('/', methods=['GET', 'POST'])
-def index():
-    if request.method == 'POST':
-        score = run_mcq_quiz(questions_list)
-        return render_template('result.html', score=score, total=len(questions_list))
-
-    return render_template('quiz.html', questions=enumerate(questions_list, 1))
 
 if __name__ == '__main__':
     app.run(debug=True)
