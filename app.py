@@ -1,6 +1,4 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
-from flask_wtf import FlaskForm
-from wtforms import FloatField, IntegerField, StringField, SubmitField
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
 import requests
@@ -150,15 +148,15 @@ def index(user_id):
     if request.method == 'POST':
         score = run_mcq_quiz(questions_list)
         total=len(questions_list)
-        aptitude_score=score/total*10
+        apt_score=score/total*10
         if user_id:
             # Update the user document in Firestore with the new aptitude score
             user_ref = db.collection('users').document(user_id)
             user_ref.set({
-                'aptitude': aptitude_score
+                'aptitude': apt_score
             }, merge=True)
 
-            return render_template('aptitude/result.html', score=score, aptitude_score=aptitude_score, total=total, user_id=user_id)
+            return render_template('aptitude/result.html', score=score, apt_score=apt_score, total=total, user_id=user_id)
         else:
             # Redirect to the login page if the user is not logged in
             return redirect(url_for('login_page'))
