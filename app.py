@@ -145,13 +145,23 @@ def result(prediction, pro, userData):
     return render_template('result.html', prediction=prediction, pro=pro, userData=userData)
     
     
-@app.route('/aptitude', methods=['GET', 'POST'])
-def index():
+@app.route('/aptitude/<user_id>', methods=['GET', 'POST'])
+def index(user_id):
     if request.method == 'POST':
         score = run_mcq_quiz(questions_list)
         total=len(questions_list)
         aptitude_score=score/total*10
-        return render_template('aptitude/result.html', score=score, aptitude_score=aptitude_score, total=total)
+        if user_id:
+            # Update the user document in Firestore with the new aptitude score
+            user_ref = db.collection('users').document(user_id)
+            user_ref.set({
+                'aptitude': aptitude_score
+            }, merge=True)
+
+            return render_template('aptitude/result.html', score=score, aptitude_score=aptitude_score, total=total, user_id=user_id)
+        else:
+            # Redirect to the login page if the user is not logged in
+            return redirect(url_for('login_page'))
 
     return render_template('aptitude/quiz.html', questions=enumerate(questions_list, 1))
 
