@@ -4,10 +4,14 @@
     <title>Prediction Result</title>
 </head>
 <body>
-    <h1>Hello {{ name }}</h1>
+    <h1>Hello {{ userData.name }}</h1>
     <h1>Placement probability {{ prediction }}</h1>
     <h1>Placement probability % {{ pro }}</h1>
     <h1>Placement probability</h1>
+    <p>Cgpa:{{userData.cgpa}}</p>
+    <p>Aptitude Score:{{userData.aptitude}}</p>
+    <p>Communication Score:{{userData.communication}}</p>
+    <p>Number of internships:{{userData.num_internships}}</p>
     <button>Home</button>
 </body>
 </html>

@@ -9,6 +9,9 @@ import pickle
 from mcq import app as mcq_app
 from mcq import questions_list
 from mcq import *
+import json
+from urllib.parse import urlencode
+from urllib.parse import parse_qs
 
 app = Flask(__name__)
 
@@ -131,14 +134,15 @@ def predict(user_id):
         prob = model.predict_proba(new_student_features)
         pro = prob[0][1] * 100
 
-        return redirect(url_for('result', name=userData['name'], prediction=prediction[0], pro=pro))
+        return redirect(url_for('result', prediction=prediction[0], pro=pro, userData=urlencode({'userData': json.dumps(userData)})))
 
     else:
         return "User data not found"
 
-@app.route('/result/<name>/<prediction>/<pro>')
-def result(name, prediction, pro):
-    return render_template('result.html', name=name, prediction=prediction, pro=pro)
+@app.route('/result/<prediction>/<pro>/<userData>')
+def result(prediction, pro, userData):
+    userData = json.loads(parse_qs(userData)['userData'][0])  # convert the stringified dictionary back to a dictionary
+    return render_template('result.html', prediction=prediction, pro=pro, userData=userData)
     
     
 @app.route('/aptitude', methods=['GET', 'POST'])
