@@ -10,9 +10,11 @@ print(data.head(10))
 print("\n")
 
 # No need to one-hot encode 'Stream' column if not using it as a predictor
+stream_dummies = pd.get_dummies(data['Stream'], prefix='Stream')
+#stream_dummies.to_csv('stream_dummies1.csv', index=False)
 
 # Select predictor variables
-predictors = data[['Cgpa', 'Communication', 'Aptitude', 'Internships']]
+predictors = data[['Cgpa', 'Communication', 'Aptitude', 'Internships']].join(stream_dummies)
 
 # Target variable
 target = data['PlacedOrNot']
@@ -39,7 +41,12 @@ print("\nClassification Report:\n", classification_report(y_test, predictions))
 pickle.dump(model, open('model.pkl', 'wb'))
 
 # Predict the placement of a new student
-new_student_features = [[10, 6, 7, 2]]  # Example values for Cgpa, Communication, Aptitude, Internships
+new_student_stream = 'Information Technology'  # Replace with the correct stream
+new_student_stream_dummy = stream_dummies.loc[stream_dummies[f'Stream_{new_student_stream}'] == 1].values.tolist()[0]
+print(new_student_stream_dummy)
+new_student_features = [8, 8, 2.4, 1] + new_student_stream_dummy  # Add the stream dummy variables
+new_student_features = [new_student_features]  # Convert to a 2D array
+
 prediction = model.predict(new_student_features)
 probability_new_student = model.predict_proba(new_student_features)
 print("Predicted placement:", prediction[0])

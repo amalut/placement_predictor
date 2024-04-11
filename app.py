@@ -19,7 +19,7 @@ cred = credentials.Certificate("serviceAccountKey.json")
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
-model = pickle.load(open('xgbmodel.pkl', 'rb'))
+model = pickle.load(open('model.pkl', 'rb'))
 stream_dummies = pd.read_csv('stream_dummies.csv', index_col=0)
 
 @app.route('/')
