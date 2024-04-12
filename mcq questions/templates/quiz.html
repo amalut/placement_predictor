@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ Quiz</title>
+</head>
+<body>
+    <form method="post">
+        {% for i, question in questions %}
+            <p>{{ i }}. {{ question.question }}</p>
+            {% for option in question.options %}
+                <label>
+                    <input type="radio" name="answer_{{ i }}" value="{{ loop.index }}">
+                    {{ option }}
+                </label><br>
+            {% endfor %}
+            <br>
+        {% endfor %}
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>
