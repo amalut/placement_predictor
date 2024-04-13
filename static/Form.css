@@ -1,22 +1,61 @@
-.menu1{
-    width: 15%;
-    height: 100vh;
-    margin-left: 20px;
-    float: left;
-    margin-right: 20px;
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+* {
+	box-sizing: border-box;
 }
-.form-para{
-    padding-top: 78px;
-    padding-bottom: 20px;
+body {
+	background-image: url(./images/form2.1.jpg);
+    background-size: cover;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+    background-repeat: no-repeat;
+    color: white;
+}
+input, select {
+	background-color: rgba(193, 190, 190,0.5);
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 70%;
+}
+button {
+	border-radius: 20px;
+	border: 1px solid #FF4B2B;
+	background-color: #FF4B2B;
+	color: #FFFFFF;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 12px 45px;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	transition: transform 80ms ease-in;
+    margin-top: 10px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -100%);
+    transform: translate(-280%, 760%);
+}
+h1{
+    text-align: center;
+    color: #FF4B2B;
+}
+h3{
+    padding-left: 90px;
+    color: #FF4B2B;
 }
 .div-form{
-    background-color: #EDEDED;
+    color: black;
     border-radius: 48px;
     float: left;
-    width: 900px;
+    width: 850px;
     height: 80vh;
     display: flex;
     flex-direction: row;
+    
 }
 .form-label{
     margin-right: 8px;
@@ -35,8 +74,8 @@
     margin-bottom: 10px;
 }
 .col1{
-    padding-top: 50px;
-    padding-left: 50px;
+    padding-top: 30px;
+    padding: 30px;
     display: flex;
     flex-direction:column
     
