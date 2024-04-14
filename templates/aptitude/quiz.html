@@ -4,20 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}">
 </head>
 <body>
-    <form method="post">
-        {% for i, question in questions %}
-            <p>{{ i }}. {{ question.question }}</p>
-            {% for option in question.options %}
-                <label>
-                    <input type="radio" name="answer_{{ i }}" value="{{ loop.index }}">
-                    {{ option }}
-                </label><br>
-            {% endfor %}
-            <br>
-        {% endfor %}
-        <input type="submit" value="Submit">
-    </form>
+    <div class="container">
+        <div class="header">
+            <h1>Aptitude Test</h1>
+        </div>
+        <div class="mcq-form">
+            <form method="post">
+                {% for i, question in questions %}
+                    <p>{{ i }}. {{ question.question }}</p>
+                    {% for option in question.options %}
+                        <label>
+                            <input class="opt" type="radio" name="answer_{{ i }}" value="{{ loop.index }}">
+                            {{ option }}
+                        </label><br>
+                    {% endfor %}
+                    <br>
+                {% endfor %}
+                <input class="btn" type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
