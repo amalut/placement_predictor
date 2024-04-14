@@ -23,7 +23,7 @@
                     <label class="form-label" for="college">College Name</label>
                     <input class="form-input" type="text" name="college" id="college" placeholder="Enter College Name" required>
                     <label class="form-label" for="yop">Year Of Pass</label>
-                    <input class="form-label" type="number" min="1900" max="2099" step="1" value="2024" />
+                    <input class="form-label" name="yop" type="number" min="1900" max="2099" step="1" value="2024" />
                     <div>
                         <label class="form-label">10th Score</label>
                         <input class="small-input" type="number" name="tenth" id="tenth" required>
@@ -31,7 +31,7 @@
                         <input class="small-input" type="number" name="twelth" id="twelfth" required>
                     </div>
                     <label class="form-label" for="backlogs">Any Backlogs</label>
-                    <select class="small-input" name="backlog" id="backlog" required>
+                    <select class="small-input" name="backlogs" id="backlog" required>
                         <option value="">select</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
@@ -51,14 +51,14 @@
                         <option value="Other">Other</option>
                     </select>
                     <label class="form-label" for="dept">Department</label>
-                    <select class="small-input" name="department" id="dept" required>
+                    <select class="small-input" name="dept" id="dept" required>
                         <option value="">Select</option>
-                        <option value="cs">Computer Science</option>
-                        <option value="it">Information Technology</option>
-                        <option value="ece">Electronics & Communication</option>
-                        <option value="eee">Electrical & Electronics</option>
-                        <option value="me">Mechanical Engineering</option>
-                        <option value="ce">Civil Engineering</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Electronics And Communication">Electronics & Communication</option>
+                        <option value="Electrical">Electrical & Electronics</option>
+                        <option value="Mechanical">Mechanical Engineering</option>
+                        <option value="Civil">Civil Engineering</option>
                     </select>
                     <label class="form-label" for="cgpa">Current CGPA</label>
                     <input class="small-input" type="number" name="cgpa" id="cgpa" required step="0.01" required>
