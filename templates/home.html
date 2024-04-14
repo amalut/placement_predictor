@@ -56,75 +56,74 @@
 </head>
 <body>
     <div class="menu">
-        <h1 class="logo mb-10 text-blue-600 text-3xl font-bold font-sans">Placement Predictor</h1>
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
         <button class="menu-item">Courses</button>
-        <button class="menu-item menu-item-logout" onclick="logout()">Logout</button>
+        <button class="menu-item" onclick="logout()">Logout</button>   
     </div>
     <div class="profile">
         <h1 class="title">Profile</h1>
-        <img class="profile-img" src="{{ url_for('static', filename='images/Propic.jpg') }}" alt="profile img">
-        {% if userData %}
-            <p class="para-value">{{ userData.name }}</p>
-            <p class="para">Email: {{ userEmail }}</p>
-            {% if userData.age %}
-                <p class="para">Age: {{ userData.age }}</p>
-            {% endif %}
-            {% if userData.gender %}
-                <p class="para">Gender</p>
-                <p class="para-value">{{ userData.gender }}</p>
-            {% endif %}
-            {% if userData.dob %}
-                <p class="para">Date of Birth</p>
-                <p class="para-value">{{ userData.dob }}</p>
-            {% endif %}
-            {% if userData.college %}
-                <p class="para">College</p>
-                <p class="para-value">{{ userData.college }}</p>
-            {% endif %}
-            {% if userData.dept %}
-                <p class="para">Department</p>
-                <p class="para-value">{{ userData.dept }}</p>
-            {% endif %}
-            {% if userData.yop %}
-                <p class="para">Year OF PassOut</p>
-                <p class="para-value">{{ userData.yop }}</p>
-            {% endif %}
-            {% if userData.cgpa %}
-                <p class="para">CGPA</p>
-                <p class="para-value">{{ userData.cgpa }}</p>
-            {% endif %}
-            {% if userData.backlogs %}
-                <p class="para">Have backlogs?</p>
-                <p class="para-value">{{ userData.backlogs }}</p>
-            {% endif %}
+        <img class="profile-img" src="{{ url_for('static', filename='images/dp.jpg') }}" alt="profile img">
+        <div class="wrapper">
             {% if userData %}
-                <p class="para">Internships did</p>
-                <p class="para-value">{{ userData.num_internships }}</p>
+                <p class="para-value">{{ userData.name }}</p>
+                <div class="wrapper-left">
+                    <p class="para">Email: <p class="wr-value">{{ userEmail }}</p></p>
+                    {% if userData.age %}
+                        <p class="para">Age: <p class="wr-value">{{ userData.age }}</p></p>
+                    {% endif %}
+                    {% if userData.gender %}
+                        <p class="para">Gender: <p class="wr-value">{{ userData.gender }}</p></p>
+                    {% endif %}
+                    {% if userData.dob %}
+                        <p class="para">Date of Birth: <p class="wr-value">{{ userData.dob }}</p></p>
+                    {% endif %}
+                    {% if userData.college %}
+                        <p class="para">College: <p class="wr-value">{{ userData.college }}</p></p>
+                    {% endif %}
+            
+                </div>
+                <div class="wrapper-mid">
+                    
+                    {% if userData.dept %}
+                        <p class="para">Department: <p class="wr-value">{{ userData.dept }}</p></p>
+                    {% endif %}
+                    {% if userData.yop %}
+                        <p class="para">Year of graduation: <p class="wr-value">{{ userData.yop }}</p></p>
+                    {% endif %}
+                    {% if userData.cgpa %}
+                        <p class="para">CGPA: <p class="wr-value">{{ userData.cgpa }}</p></p>
+                    {% endif %}
+                    {% if userData.backlogs %}
+                        <p class="para">Have backlogs? <p class="wr-value">{{ userData.backlogs }}</p></p>
+                    {% endif %}
+                    {% if userData %}
+                        <p class="para">Number of internships: <p class="wr-value">{{ userData.num_internships }}</p></p>
+                    {% endif %}
+                    
+                    
+                </div>
+                <div class="wrapper-right">
+                    {% if userData.tenth %}
+                        <p class="para">Tenth Percentage: <p class="wr-value">{{ userData.tenth }}</p></p>
+                    {% endif %}
+                    {% if userData.twelth %}
+                        <p class="para">Twelth Percentage: <p class="wr-value">{{ userData.twelth }}</p></p>
+                    {% endif %}
+                    {% if userData %}
+                        <p class="para">Aptitude score: <p class="wr-value">{{ userData.aptitude }}</p></p>
+                    {% endif %}
+                    {% if userData %}
+                        <p class="para">Communication score: <p class="wr-value">{{ userData.communication }}</p></p>   
+                    {% endif %}
+                    <!-- Include other user data fields here -->
+                </div>
             {% endif %}
-            {% if userData.tenth %}
-                <p class="para">Tenth %</p>
-                <p class="para-value">{{ userData.tenth }}</p>
-            {% endif %}
-            {% if userData.twelth %}
-                <p class="para">Twelth % %</p>
-                <p class="para-value">{{ userData.twelth }}</p>
-            {% endif %}
-            {% if userData %}
-                <p class="para">Aptitude score % %</p>
-                <p class="para-value">{{ userData.aptitude }}</p>
-            {% endif %}
-            {% if userData %}
-                <p class="para">Communication score</p>
-                <p class="para-value">{{ userData.communication }}</p>
-                <p>{{user_id}}</p>
-            {% endif %}
-            <!-- Include other user data fields here -->
-        {% endif %}
+        </div>
     </div>
     <div class="profile-btn">
         <button class="btn-1" onclick="aptitude_test('{{ user_id }}')">Take Aptitude Test</button>
         <button class="btn-2" onclick="com_test()">Take Communication Assessment</button>
-        <button class="btn-1" onclick="handlePredict('{{ user_id }}')">Predict</button>
+        <button class="btn-3" onclick="handlePredict('{{ user_id }}')">Predict</button>
     </div>
 </body>
 </html>
