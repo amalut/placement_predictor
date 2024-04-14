@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speech to Grammar Marks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #record-btn {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+        #message {
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function startRecording() {
+            document.getElementById("message").innerText = "Recording... Please speak into the microphone.";
+        }
+    </script>
+</head>
+<body>
+    <h1>Communication Assessment Test</h1>
+    <p>Introduce yourself in 120 seconds:</p>
+    <div id="message"></div>
+    <form action="/record" method="post" onsubmit="startRecording()">
+        <button id="record-btn" type="submit">Record Audio</button>
+    </form>
+</body>
+</html>
