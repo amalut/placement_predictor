@@ -4,10 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
 </head>
 <body>
-    <h1>Quiz Result</h1>
-    <p>Your score: {{ score }} out of {{ total }}</p>
-    <p>Score out of 10: {{apt_score}}</p>
+    <div class="container">
+        <div class="content">
+            <h1>Quiz Result</h1>
+            <p>Your score: {{ score }} out of {{ total }}</p>
+            <p>Score out of 10: {{apt_score}}</p>
+        </div>
+        
+    </div>
 </body>
 </html>

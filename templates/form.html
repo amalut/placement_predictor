@@ -23,7 +23,7 @@
                     <label class="form-label" for="college">College Name</label>
                     <input class="form-input" type="text" name="college" id="college" placeholder="Enter College Name" required>
                     <label class="form-label" for="yop">Year Of Pass</label>
-                    <input class="small-input" type="month" name="yop" id="yop" required>
+                    <input class="form-label" type="number" min="1900" max="2099" step="1" value="2024" />
                     <div>
                         <label class="form-label">10th Score</label>
                         <input class="small-input" type="number" name="tenth" id="tenth" required>
@@ -31,7 +31,11 @@
                         <input class="small-input" type="number" name="twelth" id="twelfth" required>
                     </div>
                     <label class="form-label" for="backlogs">Any Backlogs</label>
-                    <input class="form-input" type="number" name="backlogs" id="backlogs" required>
+                    <select class="small-input" name="backlog" id="backlog" required>
+                        <option value="">select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
                     
                 </div>
                 <div class="col1">
@@ -41,13 +45,21 @@
                     <input class="form-input" type="text" name="age" id="age" placeholder="Enter Age" required>
                     <label class="form-label" for="gender">Gender</label>
                     <select class="small-input" name="gender" id="gender" required>
-                        <option value="">Select gender</option>
+                        <option value="">Select</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
                     </select>
                     <label class="form-label" for="dept">Department</label>
-                    <input class="form-input" type="text" name="dept" id="dept" placeholder="Enter Department" required>
+                    <select class="small-input" name="department" id="dept" required>
+                        <option value="">Select</option>
+                        <option value="cs">Computer Science</option>
+                        <option value="it">Information Technology</option>
+                        <option value="ece">Electronics & Communication</option>
+                        <option value="eee">Electrical & Electronics</option>
+                        <option value="me">Mechanical Engineering</option>
+                        <option value="ce">Civil Engineering</option>
+                    </select>
                     <label class="form-label" for="cgpa">Current CGPA</label>
                     <input class="small-input" type="number" name="cgpa" id="cgpa" required step="0.01" required>
                     <label class="form-label" for="linkedin">LinkedIn URL</label>
