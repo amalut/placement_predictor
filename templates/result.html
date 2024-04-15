@@ -5,13 +5,21 @@
 </head>
 <body>
     <h1>Hello {{ userData.name }}</h1>
-    <h1>Placement probability {{ prediction }}</h1>
-    <h1>Placement probability % {{ pro }}</h1>
-    <h1>Placement probability</h1>
-    <p>Cgpa:{{userData.cgpa}}</p>
-    <p>Aptitude Score:{{userData.aptitude}}</p>
-    <p>Communication Score:{{userData.communication}}</p>
-    <p>Number of internships:{{userData.num_internships}}</p>
-    <button>Home</button>
+    <h1>Placement probability: {{ prediction }}</h1>
+    <h1>Placement probability %: {{ pro }}</h1>
+    {% if pro < 50 %}
+        <h2>Your placement probability is low. Here are some recommendations:</h2>
+        {% if userData.aptitude < 5 %}
+            <p>Improve your aptitude skills.</p>
+        {% endif %}
+        {% if userData.communication < 6 %}
+            <p>Work on improving your communication skills.</p>
+        {% endif %}
+    {% endif %}
+    <p>Cgpa: {{ userData.cgpa }}</p>
+    <p>Aptitude Score: {{ userData.aptitude }}</p>
+    <p>Communication Score: {{ userData.communication }}</p>
+    <p>Number of internships: {{ userData.num_internships }}</p>
+    <a href="/">Home</a>
 </body>
 </html>
