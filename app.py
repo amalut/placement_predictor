@@ -140,7 +140,7 @@ def predict(user_id):
 @app.route('/result/<prediction>/<pro>/<userData>')
 def result(prediction, pro, userData):
     userData = json.loads(parse_qs(userData)['userData'][0])  # convert the stringified dictionary back to a dictionary
-    return render_template('result.html', prediction=prediction, pro=pro, userData=userData)
+    return render_template('result.html', prediction=prediction, pro=float(pro), userData=userData)
     
     
 @app.route('/aptitude/<user_id>', methods=['GET', 'POST'])
