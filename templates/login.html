@@ -1,32 +1,40 @@
 <!-- login.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <!-- Link your custom CSS file -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1 class="mb-4">Placement Predictor</h1>
-        <form method="POST" action="/login" class="form-signin">
-            <h2 class="form-signin-heading">Please sign in</h2>
-            <label for="inputEmail" class="sr-only">Email address</label>
-            <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Email address" name="email" required autofocus>
-            <label for="inputPassword" class="sr-only">Password</label>
-            <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" name="password" required>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        </form>
-        <a href="/signup" class="btn btn-lg btn-secondary btn-block mt-3">Signup</a>
-        {% if error %}
-            <div class="alert alert-danger mt-3" role="alert">
-                {{ error }}
-            </div>
-        {% endif %}
-    </div> <!-- /container -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login</title>
+        <!-- Link your custom CSS file -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="form-container .sign-in-container">
+                <h1 class="mb-4">Placement Predictor</h1>
+                <form method="POST" action="/login" class="form-signin">
+                    <h2 class="form-signin-heading">Sign in</h2>
+                    <label for="inputEmail" class="sr-only">Email address</label>
+                    <input type="email" id="inputEmail" class="form-control mb-3" placeholder="Email address" name="email" required autofocus>
+                    <label for="inputPassword" class="sr-only">Password</label>
+                    <input type="password" id="inputPassword" class="form-control mb-3" placeholder="Password" name="password" required>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                </form>
 
-    <!-- No Bootstrap JS required -->
-</body>
+                {% if error %}
+                    <div class="alert alert-danger mt-3" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+            </div>
+            <div class="overlay-panel overlay-right">
+			    <h1 class="signup-h1">Hello, Friend!</h1>
+			    <p>Enter your personal details and start journey with us</p>
+			    <button class="ghost" id="signUp"><a href="/signup" class="btn btn-lg  btn-block mt-3">Sign up</a></button>
+		    </div>
+        
+        </div> <!-- /container -->
+
+        <!-- No Bootstrap JS required -->
+    </body>
 </html>

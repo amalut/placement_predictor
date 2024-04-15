@@ -1,23 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+li{
+    list-style-type: none;
+}
 .menu{
-    background-color: white;
+    background-color: #FF4B2B;
     width: 15%;
     height: 100vh;
-    
-    margin-left: 20px;
-    
     float: left;
-    margin-right: 20px;
-    border-right: solid 1px gray;
 }
 .logo{
-    padding-top: 25px;
-    padding-left: 18px;
+    padding:25px 18px;
+    font-size: 22px;
+    text-align: center;
+    color: white;
 }
 .menu-item{
+    font-size: large;
+    color: white;
+    background: none;
+    border: none;
     text-align: center;
-    width: 150px;
-    border-radius: 5px;
-    height: 30px;
+    width: 210px;
+    height: 40px;
+    border-radius: 0px 20px 20px 0px;
     padding-top: 3px;
     margin-bottom: 10px;
     
@@ -27,14 +37,15 @@
     margin-left: 0px;
 }
 .menu-item:hover{
-    background-color: rgba(139, 139, 255, 0.323);
+    background-color:rgba(255, 255, 255, 0.5);
+    color: #FF4B2B;
     
 }
 .profile{
-    width: 40%;
+    width: 60%;
     height: 100vh;
     float: left;
-    padding-left: 90px;
+    padding-left: 50px;
 
 }
 .profile-img{
@@ -42,16 +53,23 @@
     width: 150px;
     height: 150px;
     margin-left: 20px;
-    margin-top: 30px;
-    margin-bottom: 25px;
+    margin-top: 20px;
 }
 .title{
-    margin-top: 64px;
+    margin-top: 30px;
     font-weight: bold;
     padding-left: 20px;
     font-size: 24px;
 }
-
+.wrapper-left, .wrapper-mid, .wrapper-right{
+    width: 30%;
+    float: left;
+}
+.wr-value{
+    color: #FF4B2B;
+    font-size: 16px;
+    padding-left:28px;
+}
 .para,.para-value{
     padding-left: 28px;
     
@@ -69,31 +87,71 @@
 }
 .btn-1{
     border-radius: 100px;
-    border: solid 1px #3751FE;
+    border: 1px solid #FF4B2B;
+    background-color: #FFFFFF;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     padding: 20px;
     width: 260px;
     height: 80px;
-    margin-top: 64px;
+    margin-top: 160px;
+    margin-right: 50px;
     transition: transform 600ms cubic-bezier(0, 0.2, 0.12, 0.97);
     
 }
 .btn-1:hover{
     transform:translateY(-3px);
-    box-shadow:3px 5px 8px 0px #0f0feb2b;
+    box-shadow:3px 5px 8px 0px #f669224f;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+    
 }
 
+
 .btn-2{
+    margin-right: 50px;
     border-radius: 100px;
-    border: solid 1px #FEC637;
+    border: solid 1px #FF4B2B;
+    background-color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
     padding: 20px;
     width: 260px;
     height: 80px;
     transition: transform 600ms cubic-bezier(0, 0.2, 0.12, 0.97);
+    margin-bottom: 60px;
     
 }
 .btn-2:hover{
     transform:translateY(-3px);
-    box-shadow:3px 5px 8px 0px  #fec6374f;
+    box-shadow:3px 5px 8px 0px  #f669224f;
+    background-color: #FF4B2B;
+    color: #FFFFFF;
+}
+.btn-3{
+    margin-right: 50px;
+    border-radius: 100px;
+    border-color: #FFFFFF;
+    background-image: linear-gradient(to right, #650add, rgb(255, 9, 198) ) ;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    width: 260px;
+    height: 80px;
+    transition: transform 100ms cubic-bezier(0, 0.2, 0.12, 0.97);
+}
+
+.btn-3:hover{
+    transform:translateY(-3px);
+    box-shadow:3px 5px 8px 0px #0f0feb2b;
+    background-image: linear-gradient(to right, rgb(255, 9, 198), #650add) ;
+    
+    
 }
 .profile-btn{
     display: flex;

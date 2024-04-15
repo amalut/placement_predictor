@@ -8,10 +8,11 @@
 </head>
 <body>
     <div class="menu1">
-        <h1 class="logo mb-10 text-blue-600 text-3xl font-bold font-sans">Placement Predictor</h1>
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
+        <h3>Enter Details</h3>
     </div>
-    <p class="form-para">Enter Details</p>
     <div class="div-form">
+        
         <form action="/submit_form/{{ user_id }}/{{ user_email }}" id="placementForm" method="POST">
             <div class="col-container">
                 <div class="col1">
@@ -22,7 +23,7 @@
                     <label class="form-label" for="college">College Name</label>
                     <input class="form-input" type="text" name="college" id="college" placeholder="Enter College Name" required>
                     <label class="form-label" for="yop">Year Of Pass</label>
-                    <input class="small-input" type="month" name="yop" id="yop" required>
+                    <input class="form-label" name="yop" type="number" min="1900" max="2099" step="1" value="2024" />
                     <div>
                         <label class="form-label">10th Score</label>
                         <input class="small-input" type="number" name="tenth" id="tenth" required>
@@ -30,22 +31,35 @@
                         <input class="small-input" type="number" name="twelth" id="twelfth" required>
                     </div>
                     <label class="form-label" for="backlogs">Any Backlogs</label>
-                    <input class="form-input" type="number" name="backlogs" id="backlogs" required>
-                    <label class="form-label" for="num_internships">Number of Internships</label>
-                    <input class="form-input" type="number" name="num_internships" id="num_internships" required>
+                    <select class="small-input" name="backlogs" id="backlog" required>
+                        <option value="">select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                    
                 </div>
                 <div class="col1">
+                    <label class="form-label" for="num_internships">Number of Internships</label>
+                    <input class="form-input" type="number" name="num_internships" id="num_internships" required>
                     <label class="form-label" for="age">Age</label>
                     <input class="form-input" type="text" name="age" id="age" placeholder="Enter Age" required>
                     <label class="form-label" for="gender">Gender</label>
                     <select class="small-input" name="gender" id="gender" required>
-                        <option value="">Select gender</option>
+                        <option value="">Select</option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
                         <option value="Other">Other</option>
                     </select>
                     <label class="form-label" for="dept">Department</label>
-                    <input class="form-input" type="text" name="dept" id="dept" placeholder="Enter Department" required>
+                    <select class="small-input" name="dept" id="dept" required>
+                        <option value="">Select</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Electronics And Communication">Electronics & Communication</option>
+                        <option value="Electrical">Electrical & Electronics</option>
+                        <option value="Mechanical">Mechanical Engineering</option>
+                        <option value="Civil">Civil Engineering</option>
+                    </select>
                     <label class="form-label" for="cgpa">Current CGPA</label>
                     <input class="small-input" type="number" name="cgpa" id="cgpa" required step="0.01" required>
                     <label class="form-label" for="linkedin">LinkedIn URL</label>
