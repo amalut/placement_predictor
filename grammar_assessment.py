@@ -23,29 +23,6 @@ def calculate_grammar_marks(text):
     grammar_marks = max(0, total_words - grammar_errors) / total_words * 100
     return grammar_marks
 
-@app.route('/')
-def index():
-    return render_template('grammar_test.html')
-
-@app.route('/record', methods=['POST'])
-def record():
-    try:
-        with sr.Microphone() as source:
-            print("Say something...")
-            recognizer = sr.Recognizer()
-            recognizer.adjust_for_ambient_noise(source)
-            audio = recognizer.listen(source, timeout=120)
-
-        transcribed_text = transcribe_audio(audio)
-        grammar_marks = calculate_grammar_marks(transcribed_text)
-
-        # Store transcribed text in a text file
-        with open("transcribed_text.txt", "w") as file:
-            file.write(transcribed_text)
-
-        return render_template('grammar_mark.html', grammar_marks=grammar_marks)
-    except Exception as e:
-        return str(e)
 
 if __name__ == "__main__":
     app.run(debug=True)

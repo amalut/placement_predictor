@@ -39,8 +39,8 @@
             window.location.href = `/aptitude/${user_id}`;
         }
 
-        async function com_test() {
-            window.location.href = '/communication';
+        async function com_test(user_id) {
+            window.location.href = `/communication/${user_id}`;
         }
     </script>
     <script>
@@ -122,7 +122,7 @@
     </div>
     <div class="profile-btn">
         <button class="btn-1" onclick="aptitude_test('{{ user_id }}')">Take Aptitude Test</button>
-        <button class="btn-2" onclick="com_test()">Take Communication Assessment</button>
+        <button class="btn-2" onclick="com_test('{{ user_id }}')">Take Communication Assessment</button>
         <button class="btn-3" onclick="handlePredict('{{ user_id }}')">Predict</button>
     </div>
 </body>

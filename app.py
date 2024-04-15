@@ -7,6 +7,7 @@ import pickle
 from mcq import app as mcq_app
 from mcq import questions_list
 from mcq import *
+from grammar_assessment import *
 import json
 from urllib.parse import urlencode
 from urllib.parse import parse_qs
@@ -163,9 +164,28 @@ def index(user_id):
 
     return render_template('aptitude/quiz.html', questions=enumerate(questions_list, 1))
 
-@app.route('/communication')
-def communication():
-    return render_template('communication.html')
+@app.route('/communication/<user_id>')
+def communication(user_id):
+    return render_template('communication/grammar_test.html',user_id=user_id)
+@app.route('/record/<user_id>', methods=['POST'])
+def record(user_id):
+    try:
+        with sr.Microphone() as source:
+            print("Say something...")
+            recognizer = sr.Recognizer()
+            recognizer.adjust_for_ambient_noise(source)
+            audio = recognizer.listen(source, timeout=120)
+
+        transcribed_text = transcribe_audio(audio)
+        grammar_marks = calculate_grammar_marks(transcribed_text)
+
+        # Store transcribed text in a text file
+        with open("transcribed_text.txt", "w") as file:
+            file.write(transcribed_text)
+
+        return render_template('communication/grammar_mark.html', grammar_marks=grammar_marks,user_id=user_id)
+    except Exception as e:
+        return str(e)
 
 if __name__ == '__main__':
     app.run(debug=True)

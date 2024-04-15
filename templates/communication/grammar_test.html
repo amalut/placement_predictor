@@ -39,7 +39,7 @@
     <h1>Communication Assessment Test</h1>
     <p>Introduce yourself in 120 seconds:</p>
     <div id="message"></div>
-    <form action="/record" method="post" onsubmit="startRecording()">
+    <form action="/record/{{ user_id }}" method="post" onsubmit="startRecording()">
         <button id="record-btn" type="submit">Record Audio</button>
     </form>
 </body>
