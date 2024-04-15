@@ -178,12 +178,20 @@ def record(user_id):
 
         transcribed_text = transcribe_audio(audio)
         grammar_marks = calculate_grammar_marks(transcribed_text)
+        score=grammar_marks/100*10
+
+        if user_id:
+            # Update the user document in Firestore with the new aptitude score
+            user_ref = db.collection('users').document(user_id)
+            user_ref.set({
+                'communication': score
+            }, merge=True)
+
+            return render_template('communication/grammar_mark.html', score=score, grammar_marks=grammar_marks,user_id=user_id)
 
         # Store transcribed text in a text file
         with open("transcribed_text.txt", "w") as file:
             file.write(transcribed_text)
-
-        return render_template('communication/grammar_mark.html', grammar_marks=grammar_marks,user_id=user_id)
     except Exception as e:
         return str(e)
 
