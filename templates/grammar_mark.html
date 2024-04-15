@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        #result-container {
+            margin-top: 50px;
+            background-color: #e9f7ef; /* Light green background */
+            border: 2px solid #4CAF50; /* Green border */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        #result {
+            font-size: 28px;
+            font-weight: bold;
+            color: #4CAF50; /* Green text */
+        }
+    </style>
+</head>
+<body>
+    <h1>Communication Assessment Result</h1>
+    <div id="result-container">
+        <p id="result">Your Score: {{ grammar_marks }}</p>
+        <p>Your  marks indicate how effectively you communicated your message.</p>
+    </div>
+</body>
+</html>
