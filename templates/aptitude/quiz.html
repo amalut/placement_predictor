@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="url">
+    <!--<meta http-equiv="refresh" content="15">-->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MCQ Quiz</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='quiz.css') }}">
 </head>
+
 <body>
     <div class="container">
         <div class="header">
             <h1>Aptitude Test</h1>
         </div>
         <div class="mcq-form">
-            <form method="post">
+            <!-- Countdown timer display -->
+            <div id="timer">
+                Time remaining: <span id="time">10:00</span> <!-- Adjust the starting time as needed -->
+            </div>
+            <form method="post" id="quizForm">
                 {% for i, question in questions %}
                     <p>{{ i }}. {{ question.question }}</p>
                     {% for option in question.options %}
@@ -27,5 +35,7 @@
             </form>
         </div>
     </div>
+    <script src="{{ url_for('static', filename='js/timer.js') }}"></script>
 </body>
+
 </html>
