@@ -74,6 +74,25 @@ def signup_page():
         error_message = str(e)
         return render_template('signup.html', error=error_message)
 
+@app.route('/admin_login')
+def admin_login():
+    return render_template('admin_login.html')
+
+@app.route('/admin_home', methods=['POST'])
+def admin_home():
+    email = request.form.get('email')
+    password = request.form.get('password')
+    if email=="admin@gmail.com" and password=="admin123":
+        users_ref = db.collection(u'users')
+        users = users_ref.stream()
+        user_data = []
+        for user in users:
+            user_data.append(user.to_dict())
+        return render_template('admin_home.html', users=user_data)
+    else:
+        error_message = "Invalid details!"
+        return render_template('admin_login.html', error=error_message)
+
 @app.route('/form/<user_id>/<user_email>')
 def form(user_id, user_email):
     return render_template('form.html', user_id=user_id, user_email=user_email)
