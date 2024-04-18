@@ -7,7 +7,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='result.css') }}">
 </head>
 <body>
+    <div class="menu">
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
+        <button class="menu-item"><a href="/">Go to home</a></button> 
+    </div>
     <div class="container">
+        
         <div class="content">
             <h1>Quiz Result</h1>
             <p>Your score: {{ score }} out of {{ total }}</p>

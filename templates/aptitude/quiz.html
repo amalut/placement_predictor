@@ -14,12 +14,11 @@
     <div class="container">
         <div class="header">
             <h1>Aptitude Test</h1>
+            <p class="timer">Time remaining: <span id="time">10:00</span></p> <!-- Adjust the starting time as needed -->
+            
         </div>
         <div class="mcq-form">
             <!-- Countdown timer display -->
-            <div id="timer">
-                Time remaining: <span id="time">10:00</span> <!-- Adjust the starting time as needed -->
-            </div>
             <form method="post" id="quizForm">
                 {% for i, question in questions %}
                     <p>{{ i }}. {{ question.question }}</p>
