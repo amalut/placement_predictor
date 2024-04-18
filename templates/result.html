@@ -2,24 +2,35 @@
 <html>
 <head>
     <title>Prediction Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='result2.css') }}">
 </head>
 <body>
-    <h1>Hello {{ userData.name }}</h1>
-    <h1>Placement probability: {{ prediction }}</h1>
-    <h1>Placement probability %: {{ pro }}</h1>
-    {% if pro < 50 %}
-        <h2>Your placement probability is low. Here are some recommendations:</h2>
-        {% if userData.aptitude < 5 %}
-            <p>Improve your aptitude skills.</p>
-        {% endif %}
-        {% if userData.communication < 6 %}
-            <p>Work on improving your communication skills.</p>
-        {% endif %}
-    {% endif %}
-    <p>Cgpa: {{ userData.cgpa }}</p>
-    <p>Aptitude Score: {{ userData.aptitude }}</p>
-    <p>Communication Score: {{ userData.communication }}</p>
-    <p>Number of internships: {{ userData.num_internships }}</p>
-    <a href="/">Home</a>
+    <div class="menu">
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
+        <button class="menu-item"><a href="/home">Go to home</a></button> 
+    </div>
+    <div class="container">
+        <div class="content">
+            <h1>Hello {{ userData.name }}</h1>
+            <h3 class="perc">Your percentage of chance to get placed : <span>{{ pro }}</span></h3></h3>
+            {% if pro < 50 %}
+                <h3>Your placement probability is <span class="prob">low</span><br></h3>
+                <p class="rec">Here are some recommendatons to improve</p>                
+                <div class="result">
+                    {% if userData.aptitude < 5 %}
+                        <p>Improve your aptitude skills.</p>
+                    {% endif %}
+                    {% if userData.communication < 6 %}
+                        <p>Work on improving your communication skills.</p>
+                    {% endif %}
+                </div>
+                
+            {% endif %}
+            <p>Cgpa: {{ userData.cgpa }}</p>
+            <p>Aptitude Score: {{ userData.aptitude }}</p>
+            <p>Communication Score: {{ userData.communication }}</p>
+            <p>Number of internships: {{ userData.num_internships }}</p>
+        </div>
+    </div>
 </body>
 </html>

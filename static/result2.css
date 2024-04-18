@@ -3,14 +3,13 @@
 body{
     font-family: 'Montserrat', sans-serif;
     margin: 0;
-}
+}  
 .container{
     display: flex;
     justify-content: center;
     align-items: center; 
     height: 100vh;
 }
-
 .menu{
     background-color: #FF4B2B;
     width: 15%;
@@ -34,12 +33,36 @@ body{
     border-radius: 0px 20px 20px 0px;
     padding-top: 3px;
     margin-bottom: 10px;
+    
+
+}
+.menu-item:hover{
+    background-color:rgba(255, 255, 255, 0.5);
+    
+}
+.perc{
+    display: inline-block;
+}
+.perc span{
+    color: #FF4B2B;
 }
 a{
     color: white;
     text-decoration: none;
 }
-h1{
+.prob{
+    color: red;
+}
+.rec{
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+.result{
+    border-style:double;
+    border-radius: 25px;
+    padding-left: 10px;
+    padding-right: 10px;
+    width: 50%;
     text-align: center;
-    margin-bottom: 50px;
+    border-color:crimson
 }
