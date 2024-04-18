@@ -151,8 +151,11 @@ def predict(user_id):
         prediction = model.predict(new_student_features)
         prob = model.predict_proba(new_student_features)
         pro = prob[0][1] * 100
+        pre=int(prediction[0])
+        user_ref.update({'placement_chance': pro})
+        user_ref.update({'placement_pro': pre})
 
-        return redirect(url_for('result', prediction=prediction[0], pro=pro, userData=urlencode({'userData': json.dumps(userData)})))
+        return redirect(url_for('result', prediction=pre, pro=pro, userData=urlencode({'userData': json.dumps(userData)})))
 
     else:
         return "User data not found"

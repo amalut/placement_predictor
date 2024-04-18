@@ -124,6 +124,11 @@ li{
     margin-bottom: 60px;
     
 }
+
+.logout-link{
+        text-decoration: none; /* Removes underline */
+        color: inherit; /* Inherits color from parent element */
+}
 .btn-2:hover{
     transform:translateY(-3px);
     box-shadow:3px 5px 8px 0px  #f669224f;
