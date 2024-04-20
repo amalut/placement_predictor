@@ -93,6 +93,15 @@ def admin_home():
         error_message = "Invalid details!"
         return render_template('admin_login.html', error=error_message)
 
+@app.route('/students')
+def students():
+    users_ref = db.collection(u'users')
+    users = users_ref.stream()
+    user_data = []
+    for user in users:
+        user_data.append(user.to_dict())
+    return render_template('student_details.html', users=user_data)
+
 @app.route('/form/<user_id>/<user_email>')
 def form(user_id, user_email):
     return render_template('form.html', user_id=user_id, user_email=user_email)
@@ -153,7 +162,7 @@ def predict(user_id):
         pro = prob[0][1] * 100
         pre=int(prediction[0])
         user_ref.update({'placement_chance': pro})
-        user_ref.update({'placement_pro': pre})
+        user_ref.update({'placement_pre': pre})
 
         return redirect(url_for('result', prediction=pre, pro=pro, userData=urlencode({'userData': json.dumps(userData)})))
 
@@ -189,6 +198,8 @@ def index(user_id):
 @app.route('/communication/<user_id>')
 def communication(user_id):
     return render_template('communication/grammar_test.html',user_id=user_id)
+
+
 @app.route('/record/<user_id>', methods=['POST'])
 def record(user_id):
     try:

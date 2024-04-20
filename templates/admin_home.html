@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='admin_home.css') }}">
+    <script>
+    async function displayStudent(){
+        window.location.href=`/students`;
+    }
+    </script>
 </head>
 <body>
     <div class="menu">
@@ -17,7 +22,7 @@
         <h3>admin name</h3>
         <p>placemnt Coordinator</p>
         <div class="btn">
-            <button class="btn-1" >Student Details</button>
+            <button class="btn-1" onclick="displayStudent()">Student Details</button>
             <button class="btn-2" >Post New Placement</button>
         </div>
     </div>

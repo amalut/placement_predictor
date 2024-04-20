@@ -16,7 +16,9 @@
                 <th>DEPARTMENT</th>
                 <th>CGPA</th>
                 <th>APTITUDE SCORE</th>
-                <th>COMMUNICATION SCORE</th>
+                <th>Communication Score</th>
+                <th>Predicted Placement</th>
+                <th>Placement Chance %</th>
             </tr>
             {% for user in users %}
                 <tr>
@@ -25,6 +27,8 @@
                     <td>{{ user.cgpa }}</td>
                     <td>{{ user.aptitude }}</td>
                     <td>{{ user.communication }}</td>
+                    <td>{{ user.placement_pre }}</td>
+                    <td>{{ user.placement_chance }}</td>
                 </tr>
             {% endfor %}
          </table>
