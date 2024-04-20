@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+body{
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+}
+.menu{
+    background-color: #952bff;
+    width: 15%;
+    height: 100vh;
+    float: left;
+}
+.menu-item-logout {
+    margin-left: 0px;
+}
+.menu-item:hover{
+    background-color:rgba(255, 255, 255, 0.5);
+    
+}
+.logo{
+    padding:25px 18px;
+    font-size: 22px;
+    text-align: center;
+    color: white;
+}
+.menu-item{
+    font-size: large;
+    color: white;
+    background: none;
+    border: none;
+    text-align: center;
+    width: 210px;
+    height: 40px;
+    border-radius: 0px 20px 20px 0px;
+    padding-top: 3px;
+    margin-bottom: 10px;
+    
+
+}
+.profile{
+    width: 60%;
+    height: 100vh;
+    float: left;
+    padding-left: 50px;
+
+}
+.profile-img{
+    border-radius: 100%;
+    width: 150px;
+    height: 150px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+.title{
+    margin-top: 30px;
+    font-weight: bold;
+    padding-left: 20px;
+    font-size: 24px;
+}
+.btn-1, .btn-2{
+    padding: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    border-style: solid;
+    border-color: #952bff;
+    background-color: transparent;
+    color: #952bff;
+    font-size: 20px;
+}
+.btn-1:hover {
+    background-color: #952bff;
+    color: white;
+}
+.btn-2:hover{
+    background-color: #952bff;
+    color: white;
+}

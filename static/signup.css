@@ -123,3 +123,12 @@ input{
 .signup-h1{
     color: #FFFFFF;
 }
+.admin{
+	top: 5%;
+	right: 5%;
+    height:40px;
+    position: absolute;
+	border-radius: 10px;
+	border-color: #952bff;
+	background-color: rgb(149, 43, 255, 0.5);
+}

@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='admin_home.css') }}">
 </head>
 <body>
-{% for user in users %}
-    <p>Name:{{ user.name }} ,Department: {{ user.dept }} ,CGPA: {{ user.cgpa }} ,Aptitude: {{ user.aptitude }} ,Communication: {{ user.communication }} ,  </p>
-{% endfor %}
+    <div class="menu">
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
+        <button class="menu-item" onclick="logout()">Logout</button>   
+    </div>
+    <div class="profile">
+        <h1 class="title">Profile</h1>
+        <img class="profile-img" src="{{ url_for('static', filename='images/dp.jpg') }}" alt="profile img">
+        <h3>admin name</h3>
+        <p>placemnt Coordinator</p>
+
+        <div class="btn">
+            <button class="btn-1" >Student Details</button>
+            <button class="btn-2" >Post New Placement</button>
+
+        </div>
+        {% for user in users %}
+            <p>Name:{{ user.name }} ,Department: {{ user.dept }} ,CGPA: {{ user.cgpa }} ,Aptitude: {{ user.aptitude }} ,Communication: {{ user.communication }} ,  </p>
+        {% endfor %}
+
+    </div>
 </body>
 </html>
