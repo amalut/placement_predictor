@@ -16,16 +16,10 @@
         <img class="profile-img" src="{{ url_for('static', filename='images/dp.jpg') }}" alt="profile img">
         <h3>admin name</h3>
         <p>placemnt Coordinator</p>
-
         <div class="btn">
             <button class="btn-1" >Student Details</button>
             <button class="btn-2" >Post New Placement</button>
-
         </div>
-        {% for user in users %}
-            <p>Name:{{ user.name }} ,Department: {{ user.dept }} ,CGPA: {{ user.cgpa }} ,Aptitude: {{ user.aptitude }} ,Communication: {{ user.communication }} ,  </p>
-        {% endfor %}
-
     </div>
 </body>
 </html>
