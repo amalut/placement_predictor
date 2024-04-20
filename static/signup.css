@@ -40,7 +40,7 @@ p {
 button {
 	border-radius: 20px;
 	border: 1px solid #FF4B2B;
-	background-color: #FF4B2B;
+	background-color: #ff4b2b;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -58,9 +58,10 @@ button:focus {
 }
 
 button.ghost {
-	background-color: transparent;
+	background-color: rgb(238, 238, 238,0.3);
 	border-color: #FFFFFF;
 }
+
 form {
 	background-color: #FFFFFF;
 	display: flex;
@@ -121,4 +122,13 @@ input{
 }
 .signup-h1{
     color: #FFFFFF;
+}
+.admin{
+	top: 5%;
+	right: 5%;
+    height:40px;
+    position: absolute;
+	border-radius: 10px;
+	border-color: #952bff;
+	background-color: rgb(149, 43, 255, 0.5);
 }

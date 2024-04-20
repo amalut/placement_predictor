@@ -43,3 +43,7 @@ h1{
     text-align: center;
     margin-bottom: 50px;
 }
+
+.content h1{
+    color: #FF4B2B;
+}

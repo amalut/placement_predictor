@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title>
         <!-- Link your custom CSS file -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='signup.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='admin_login.css') }}">
     </head>
     <body>
         <div class="container">
@@ -26,6 +26,12 @@
                         {{ error }}
                     </div>
                 {% endif %}
+                
+            </div>
+            <div class="overlay-panel overlay-right">
+                
+                <h1 class="signup-h1">Hello, Friend!</h1>
+                <button class="ghost"><a href="/">Login as Student</a></button>
             </div>
         
         </div> <!-- /container -->
