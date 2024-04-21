@@ -58,7 +58,7 @@ prediction = model.predict([new_student_features])
 probability_new_student = model.predict_proba([new_student_features])[0][1]
 
 # Call the recommendation function
-recommendations = recommend_for_student(new_student_features, average_values)
+recommendations = recommend_for_student(probability_new_student,new_student_features, average_values)
 print("Predicted placement:", prediction[0])
 print("Predicted probability of getting placed:", probability_new_student * 100, "%")
 print(type(recommendations))

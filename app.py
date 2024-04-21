@@ -158,7 +158,6 @@ def predict(user_id):
         new_student_stream_dummy = stream_dummies.loc[stream_dummies[f'Stream_{stream}'] == 1].values.tolist()[0]
 
         new_student_features = [cgpa, communication, aptitude, internships]  + new_student_stream_dummy
-        recommendations = recommend_for_student(new_student_features, average_values)
         # Make a prediction using the model
         prediction = model.predict([new_student_features])
         prob = model.predict_proba([new_student_features])
@@ -166,7 +165,7 @@ def predict(user_id):
         pre=int(prediction[0])
         user_ref.update({'placement_chance': pro})
         user_ref.update({'placement_pre': pre})
-
+        recommendations = recommend_for_student(prob[0][1],new_student_features, average_values)
         return redirect(url_for('result', prediction=pre, pro=pro,rec=json.dumps(recommendations), userData=urlencode({'userData': json.dumps(userData)})))
 
     else:
