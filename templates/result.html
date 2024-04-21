@@ -14,17 +14,13 @@
             <h1>Hello {{ userData.name }}</h1>
             <h3 class="perc">Your percentage of chance to get placed : <span>{{ pro }}</span></h3></h3>
             {% if pro < 50 %}
-                <h3>Your placement probability is <span class="prob">low</span><br></h3>
+                <h3>Your chances of getting placed are below average. <span class="prob">low</span><br></h3>
                 <p class="rec">Here are some recommendatons to improve</p>                
                 <div class="result">
-                    {% if userData.aptitude < 5 %}
-                        <p>Improve your aptitude skills.</p>
-                    {% endif %}
-                    {% if userData.communication < 6 %}
-                        <p>Work on improving your communication skills.</p>
-                    {% endif %}
-                </div>
-                
+                {% for r in rec %}
+                    <p>{{r}}</p>
+                {% endfor %}
+                </div>              
             {% endif %}
         </div>
     </div>

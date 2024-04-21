@@ -11,6 +11,8 @@ from grammar_assessment import *
 import json
 from urllib.parse import urlencode
 from urllib.parse import parse_qs
+from model import average_values
+from recommendation import recommend_for_student
 
 app = Flask(__name__)
 
@@ -22,6 +24,10 @@ db = firestore.client()
 
 model = pickle.load(open('model.pkl', 'rb'))
 stream_dummies = pd.read_csv('stream_dummies.csv', index_col=0)
+def get_type(value):
+    return type(value)
+
+app.jinja_env.filters['type'] = get_type
 
 @app.route('/')
 def login_page():
@@ -152,27 +158,29 @@ def predict(user_id):
         new_student_stream_dummy = stream_dummies.loc[stream_dummies[f'Stream_{stream}'] == 1].values.tolist()[0]
 
         new_student_features = [cgpa, communication, aptitude, internships]  + new_student_stream_dummy
-
-        # Convert the input to a 2D array
-        new_student_features = [new_student_features]
-
+        recommendations = recommend_for_student(new_student_features, average_values)
         # Make a prediction using the model
-        prediction = model.predict(new_student_features)
-        prob = model.predict_proba(new_student_features)
+        prediction = model.predict([new_student_features])
+        prob = model.predict_proba([new_student_features])
         pro = prob[0][1] * 100
         pre=int(prediction[0])
         user_ref.update({'placement_chance': pro})
         user_ref.update({'placement_pre': pre})
 
-        return redirect(url_for('result', prediction=pre, pro=pro, userData=urlencode({'userData': json.dumps(userData)})))
+        return redirect(url_for('result', prediction=pre, pro=pro,rec=json.dumps(recommendations), userData=urlencode({'userData': json.dumps(userData)})))
 
     else:
         return "User data not found"
 
-@app.route('/result/<prediction>/<pro>/<userData>')
-def result(prediction, pro, userData):
+@app.route('/result/<prediction>/<pro>/<userData>/<rec>')
+def result(prediction, pro, userData,rec):
+    if rec:
+        try:
+            rec = json.loads(rec) # Convert the string back to a list
+        except json.JSONDecodeError:
+            rec = []  # Set rec to an empty list if decoding fails
     userData = json.loads(parse_qs(userData)['userData'][0])  # convert the stringified dictionary back to a dictionary
-    return render_template('result.html', prediction=prediction, pro=float(pro), userData=userData)
+    return render_template('result.html', rec=rec, prediction=prediction, pro=float(pro), userData=userData)
     
     
 @app.route('/aptitude/<user_id>', methods=['GET', 'POST'])
