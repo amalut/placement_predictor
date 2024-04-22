@@ -20,8 +20,10 @@ def calculate_grammar_marks(text):
     matches = tool.check(text)
     grammar_errors = len(matches)
     total_words = len(text.split())
+    print(f"Total:{total_words} Gramemr errors:{grammar_errors}")
     grammar_marks = max(0, total_words - grammar_errors) / total_words * 100
     return grammar_marks
+
 
 
 if __name__ == "__main__":

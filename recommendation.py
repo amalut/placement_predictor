@@ -32,6 +32,7 @@ def recommend_for_student(placement_chance,student_features, average_values):
             recommendations.append("Experion")
         if placement_chance > 0.6:
             recommendations.append("Turbolab")
+        if placement_chance >= 0.5:
             recommendations.append("Innovature")
     
     return  recommendations

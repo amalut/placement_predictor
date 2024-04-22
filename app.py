@@ -161,7 +161,9 @@ def predict(user_id):
         # Make a prediction using the model
         prediction = model.predict([new_student_features])
         prob = model.predict_proba([new_student_features])
-        pro = prob[0][1] * 100
+        pro = round(prob[0][1] * 100,2)
+        if pro<0.01:
+            pro=0.01
         pre=int(prediction[0])
         user_ref.update({'placement_chance': pro})
         user_ref.update({'placement_pre': pre})
@@ -187,7 +189,7 @@ def index(user_id):
     if request.method == 'POST':
         score = run_mcq_quiz(questions_list)
         total=len(questions_list)
-        apt_score=score/total*10
+        apt_score=round(score/total*10,2)
         if user_id:
             # Update the user document in Firestore with the new aptitude score
             user_ref = db.collection('users').document(user_id)
@@ -215,10 +217,15 @@ def record(user_id):
             recognizer = sr.Recognizer()
             recognizer.adjust_for_ambient_noise(source)
             audio = recognizer.listen(source, timeout=120)
-
+        print("Stopped")
         transcribed_text = transcribe_audio(audio)
+        #transcribed_text="myself ihjazzul Aslam final year b tech student at gec palakkad"
         grammar_marks = calculate_grammar_marks(transcribed_text)
-        score=grammar_marks/100*10
+        score=round(grammar_marks/100*10,2)
+
+        print("Grammer score:",score)
+        with open("transcribed_text.txt", "w") as file:
+            file.write(transcribed_text)
 
         if user_id:
             # Update the user document in Firestore with the new aptitude score
@@ -230,8 +237,6 @@ def record(user_id):
             return render_template('communication/grammar_mark.html', score=score, grammar_marks=grammar_marks,user_id=user_id)
 
         # Store transcribed text in a text file
-        with open("transcribed_text.txt", "w") as file:
-            file.write(transcribed_text)
     except Exception as e:
         return str(e)
 
