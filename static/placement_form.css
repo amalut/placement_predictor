@@ -8,7 +8,7 @@ label{
     font-size: 15px;
     padding-bottom: 20px;
 }
-input{
+input, select{
     border-radius: 5px;
     border-color: #952bff;
     padding: 10px;
@@ -21,7 +21,7 @@ input{
     border-radius: 5px;
     color: #952bff;
     border-color: #952bff;
-    background-color: whit;
+    background-color: white;
 }
 button:hover{
     background-color: #952bff;
