@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Resume</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+    <style>
+        #pdf-container {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Resume</h1>
+    <div id="pdf-container"></div>
+    <form id="edit-form" action="{{ url_for('save_resume', filename=filename) }}" method="post">
+        <!-- Add hidden input fields to send edited PDF data -->
+        <textarea id="edited-pdf" name="edited_pdf" style="display: none;"></textarea>
+        <button type="submit">Save</button>
+    </form>
+
+    <script>
+        // Display PDF using PDF.js
+        const pdfPath = "{{ url_for('view_resume', filename=filename) }}";
+        pdfjsLib.getDocument(pdfPath).promise.then(function(pdf) {
+            pdf.getPage(1).then(function(page) {
+                const scale = 1.5;
+                const viewport = page.getViewport({ scale: scale });
+                const canvas = document.createElement('canvas');
+                const context = canvas.getContext('2d');
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+                const renderContext = {
+                    canvasContext: context,
+                    viewport: viewport
+                };
+                page.render(renderContext).promise.then(function() {
+                    document.getElementById('pdf-container').appendChild(canvas);
+                });
+            });
+        });
+
+        // Save edited PDF data when form is submitted
+        document.getElementById('edit-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const canvas = document.querySelector('canvas');
+            const editedPdfData = canvas.toDataURL('image/jpeg');
+            document.getElementById('edited-pdf').value = editedPdfData;
+            this.submit();
+        });
+    </script>
+</body>
+</html>
