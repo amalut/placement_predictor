@@ -12,6 +12,9 @@
     async function logout(){
         window.location.href=`/admin_login`;
     }
+    async function placementForm(){
+        window.location.href=`/placement_form`;
+    }
     </script>
 </head>
 <body>
@@ -26,7 +29,7 @@
         <p>placemnt Coordinator</p>
         <div class="btn">
             <button class="btn-1" onclick="displayStudent()">Student Details</button>
-            <button class="btn-2" >Post New Placement</button>
+            <button class="btn-2" onclick="placementForm()">Post New Placement</button>
         </div>
     </div>
 </body>

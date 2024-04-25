@@ -113,6 +113,10 @@ def students():
         user_data.append(user.to_dict())
     return render_template('student_details.html', users=user_data)
 
+@app.route('/placement_form')
+def placement():
+    return render_template('placement_form.html')
+
 @app.route('/form/<user_id>/<user_email>')
 def form(user_id, user_email):
     return render_template('form.html', user_id=user_id, user_email=user_email)

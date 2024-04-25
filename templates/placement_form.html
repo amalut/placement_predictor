@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='placement_form.css') }}">
+    <title>New Placement</title>
+</head>
+<body>
+    <div class="menu">
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
+        <button class="menu-item" onclick="home()">Home</button>   
+    </div>
+    <div class="form">
+        <form>
+            <label for="company">Company Name:</label><br>
+            <input type="text" id="company" name="cname"><br>
+            <label for="lpa">Position</label><br>
+            <input type="text" id="Position" name="Position"><br>
+            <label for="criteria">Criteria</label><br>
+            <input type="text" id="criteria" name="criteria"><br>
+            <label for="date">Date</label><br>
+            <input type="date" id="date" name="date"><br>
+            <label for="lpa">Branches</label><br>
+            <input type="branch" id="branch" name="branch"><br>
+            <label for="lpa">Salary</label><br>
+            <input type="text" id="lpa" name="salary"><br>
+            <!--<a href="https://docs.google.com/forms/u/0/?tgif=d&ec=asw-forms-globalnav-goto">create form</a><br> -->
+            <label for="form">form link</label><br>
+            <input type="url" id="form" name="reg-form"><br>
+            <button class="submit" type="submit">Submit</button>
+            
+        </form>
+    </div>
+</body>
+</html>
