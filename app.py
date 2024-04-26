@@ -113,9 +113,24 @@ def students():
         user_data.append(user.to_dict())
     return render_template('student_details.html', users=user_data)
 
+@app.route('/ad_home')
+def ad_home():
+    return render_template('admin_home.html')
+
 @app.route('/placement_form')
 def placement():
     return render_template('placement_form.html')
+
+@app.route('/postnewplacement', methods=['POST'])
+def submit_placement():
+    try:
+        formData = request.form.to_dict()
+        new_placement = db.collection('newplacements').document()
+        new_placement.set(formData)
+        return redirect(url_for('ad_home'))
+    except Exception as e:
+        error_message = 'Error adding new placement: {}'.format(e)
+        return render_template('placement_form.html', error=error_message)
 
 @app.route('/form/<user_id>/<user_email>')
 def form(user_id, user_email):
@@ -283,6 +298,11 @@ def upload_resume():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             return redirect(url_for('resume'))
     return render_template('resume/upload.html')
+
+@app.route('/drives')
+def drives():
+    newplacements = db.collection('newplacements').stream()
+    return render_template('drive.html', newplacements=newplacements)
 
 if __name__ == '__main__':
     app.run(debug=True)

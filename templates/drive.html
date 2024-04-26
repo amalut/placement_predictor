@@ -10,14 +10,20 @@
     <div>
         <h2>Upcoming Drives</h2>
     </div>
+    {% for doc in newplacements %}
     <div>
-        <h1>company name</h1>
-        <p>Criteria</p>
-        <p>date</p>
-        <p>branches</p>
-        <p>salary</p>
-        <p>last date for registration</p>
-        <a href="">registration link</a>
+        {% set placement = doc.to_dict() %}
+        <h1>Company Name : {{ placement['cname'] }}</h1>
+        <p>Location : {{ placement['location'] }}</p>
+        <p>Position : {{ placement['position'] }}</p>
+        <p>Criteria : {{ placement['criteria'] }}</p>
+        <p>Date of Drive : {{ placement['date'] }}</p>
+        <p>Branches allowed : {{ placement['dept'] }}</p>
+        <p>Slary offering : {{ placement['salary'] }}</p>
+        <p>Last date of apply : {{ placement['lastdate'] }}</p>
+        <a href="{{ placement['reg-form'] }}">apply</a>
     </div>
+{% endfor %}
+
 </body>
 </html>

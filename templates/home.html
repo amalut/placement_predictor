@@ -42,6 +42,9 @@
         async function com_test(user_id) {
             window.location.href = `/communication/${user_id}`;
         }
+        async function drives() {
+            window.location.href = '/drives';
+        }
     </script>
     <script>
         async function logout() {
@@ -58,7 +61,7 @@
     <div class="menu">
         <h1 class="logo">PLACEMENT PREDICTOR</h1>
         <button class="menu-item">Courses</button>
-        <button class="menu-item">Upcoming Drives</button>
+        <button class="menu-item" onclick="drives()">Upcoming Drives</button>
         <button class="menu-item"><a class="logout-link" href="/">Logout</a></button>
     </div>
     <div class="profile">

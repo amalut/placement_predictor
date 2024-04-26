@@ -13,9 +13,11 @@
         <button class="menu-item" onclick="home()">Home</button>   
     </div>
     <div class="form">
-        <form>
+        <form action="/postnewplacement" method="POST">
             <label for="company">Company Name:</label><br>
             <input type="text" id="company" name="cname"><br>
+            <label for="company">Location:</label><br>
+            <input type="text" id="location" name="location"><br>
             <label for="lpa">Position</label><br>
             <input type="text" id="Position" name="Position"><br>
             <label for="criteria">Criteria</label><br>
