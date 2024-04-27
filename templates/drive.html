@@ -5,25 +5,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Placements</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='drive.css') }}">
 </head>
 <body>
-    <div>
-        <h2>Upcoming Drives</h2>
+    <div class="menu">
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
+        <button class="menu-item">Home</button>
     </div>
-    {% for doc in newplacements %}
-    <div>
-        {% set placement = doc.to_dict() %}
-        <h1>Company Name : {{ placement['cname'] }}</h1>
-        <p>Location : {{ placement['location'] }}</p>
-        <p>Position : {{ placement['position'] }}</p>
-        <p>Criteria : {{ placement['criteria'] }}</p>
-        <p>Date of Drive : {{ placement['date'] }}</p>
-        <p>Branches allowed : {{ placement['dept'] }}</p>
-        <p>Slary offering : {{ placement['salary'] }}</p>
-        <p>Last date of apply : {{ placement['lastdate'] }}</p>
-        <a href="{{ placement['reg-form'] }}">apply</a>
+    <div class="title">
+        <h2 class="t1">Upcoming Drives</h2>
     </div>
-{% endfor %}
+    <div class="container">
+        {% for doc in newplacements %}
+        <div class="placement-list">
+            {% set placement = doc.to_dict() %}
+            <h3 style="padding-bottom: 20px;">Company Name : {{ placement['cname'] }}</h3>
+            <p>Location : {{ placement['location'] }}</p>
+            <p>Position : {{ placement['position'] }}</p>
+            <p>Criteria : {{ placement['criteria'] }}</p>
+            <p>Date of Drive : {{ placement['date'] }}</p>
+            <p>Branches allowed : {{ placement['dept'] }}</p>
+            <p>Slary offering : {{ placement['salary'] }}</p>
+            <p class="l-date">Last date of apply : {{ placement['lastdate'] }}</p>
+            <a class="btn" href="{{ placement['reg-form'] }}">Apply</a>
+        </div>
+        {% endfor %}
+    </div>
 
 </body>
 </html>
