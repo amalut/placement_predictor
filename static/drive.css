@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+* {
+	box-sizing: border-box;
+    margin: 0;
+}
+body{
+    background: #f6f5f7;
+    font-family: 'Montserrat', sans-serif;
+}
+.menu{
+    background-color: #FF4B2B;
+    width: 15%;
+    height: 100vh;
+    float: left;
+    position: fixed;
+}
+.logo{
+    padding:25px 18px;
+    font-size: 22px;
+    text-align: center;
+    color: white;
+    position: sticky;
+}
+.menu-item{
+    font-size: large;
+    color: white;
+    background: none;
+    border: none;
+    text-align: center;
+    width: 210px;
+    height: 40px;
+    border-radius: 0px 20px 20px 0px;
+    padding-top: 3px;
+    margin-bottom: 10px;
+    position: sticky;
+    
+
+}
+.menu-item:hover{
+    background-color:rgba(255, 255, 255, 0.5);
+    
+}
+.t1{
+    padding-left: 300px;
+    padding-top: 20px;
+
+}
+.container{
+    margin: 20px;
+    margin-left: 300px;
+}
+.placement-list {
+	display: inline-block;
+    width: 40%;
+    margin: 10px;
+    padding: 30px;
+    background-color: #a6240d;
+    margin-bottom: 50px;
+    border-radius: 20px;
+    color: white;
+}
+.btn{
+    text-decoration: none;
+    background-image: linear-gradient(to right, #650add, rgb(255, 9, 198) ) ;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+
+}
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:3px 5px 8px 0px #0f0feb2b;
+    background-image: linear-gradient(to right, rgb(255, 9, 198), #650add) ;
+}
+.l-date{
+    margin-bottom: 20px;
+}
