@@ -9,7 +9,7 @@
     <h1>Previous Question Papers</h1>
     <ul>
         {% for paper in papers %}
-            <li><a href="/download/{{ paper.filename }}">{{ paper.name }}</a></li>
+            <li><a href="/viewqp/{{ paper.filename }}">{{ paper.name }}</a>&nbsp;<a href="/downloadqp/{{ paper.filename }}">Download</a></li>
         {% endfor %}
     </ul>
 </body>
