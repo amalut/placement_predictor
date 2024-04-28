@@ -45,8 +45,9 @@
                 <p>Branches allowed : {{ placement['dept'] }}</p>
                 <p>Salary offering : {{ placement['salary'] }}</p>
                 <p class="l-date">Last date of apply : {{ placement['lastdate'] }}</p>
-                <a class="btn" href="{{ placement['reg-form'] }}">Apply</a>
-            </span>
+                
+            </span><br>
+            <a class="btn" href="{{ placement['reg-form'] }}">Apply</a>
             <button id="view-more" onclick="toggleDetails()">View More</button>
         </div>
         {% endfor %}
