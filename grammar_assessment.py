@@ -1,8 +1,10 @@
-from flask import Flask, render_template, request
+
 import speech_recognition as sr
 import language_tool_python
+from nltk.corpus import wordnet as wn
+from nltk.tokenize import word_tokenize
+from itertools import product
 
-app = Flask(__name__)
 tool = language_tool_python.LanguageTool('en-US')
 
 def transcribe_audio(audio):
@@ -23,6 +25,33 @@ def calculate_grammar_marks(text):
     print(f"Total:{total_words} Gramemr errors:{grammar_errors}")
     grammar_marks = max(0, total_words - grammar_errors) / total_words * 100
     return grammar_marks
+
+def calculate_semantic_score(text):
+    # Tokenize the text into words
+    tokens = word_tokenize(text)
+
+    # Calculate semantic similarity score
+    similarity_scores = []
+    for word1 in tokens:
+        max_similarity = 0
+        for word2 in tokens:
+            if word1 != word2:
+                synsets1 = wn.synsets(word1)
+                synsets2 = wn.synsets(word2)
+                if synsets1 and synsets2:
+                    for synset1, synset2 in product(synsets1, synsets2):
+                        similarity = synset1.path_similarity(synset2)
+                        if similarity is not None and similarity > max_similarity:
+                            max_similarity = similarity
+        similarity_scores.append(max_similarity)
+
+    # Calculate average similarity score
+    if similarity_scores:
+        semantic_score = sum(similarity_scores) / len(similarity_scores)*100
+    else:
+        semantic_score = 0
+
+    return semantic_score
 
 
 
