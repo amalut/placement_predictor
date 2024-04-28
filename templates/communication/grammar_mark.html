@@ -24,9 +24,48 @@
             font-weight: bold;
             color: #4CAF50; /* Green text */
         }
+        .menu{
+            background-color: #FF4B2B;
+            width: 15%;
+            height: 100vh;
+            float: left;
+        }
+        .logo{
+            padding:25px 18px;
+            font-size: 22px;
+            text-align: center;
+            color: white;
+        }
+        .menu-item{
+            font-size: large;
+            color: white;
+            background: none;
+            border: none;
+            text-align: center;
+            width: 210px;
+            height: 40px;
+            border-radius: 0px 20px 20px 0px;
+            padding-top: 3px;
+            margin-bottom: 10px;
+            
+
+        }
+        .menu-item-logout {
+            margin-left: 0px;
+        }
+        .menu-item:hover{
+            background-color:rgba(255, 255, 255, 0.5);
+            
+        }
     </style>
 </head>
 <body>
+    <div class="menu">
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
+        <button class="menu-item">Courses</button>
+        <button class="menu-item" onclick="drives()">Upcoming Drives</button>
+        <button class="menu-item"><a class="logout-link" href="/">Logout</a></button>
+    </div>
     <h1>Communication Assessment Result</h1>
     <div id="result-container">
         <p id="result">Your Score: {{ grammar_marks }}</p>

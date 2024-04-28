@@ -3,7 +3,11 @@
 body{
     font-family: 'Montserrat', sans-serif;
     margin: 0;
+    background: #f6f5f7;
 }  
+.chance{
+    margin-bottom: 50px;
+}
 .container{
     display: flex;
     justify-content: center;
@@ -57,7 +61,7 @@ a{
     font-size: 20px;
     margin-bottom: 5px;
 }
-.result{
+/* .result{
     border-style:double;
     border-radius: 25px;
     padding-left: 10px;
@@ -65,4 +69,33 @@ a{
     width: 50%;
     text-align: center;
     border-color:crimson
+} */
+.recomendation{
+    background-image: linear-gradient(to right, #20948B, #6AB187) ;
+    padding: 20px;
+    color: #f6f5f7;
+    animation: example 3s;
+    animation-direction:alternate;
+    animation-timing-function: ease-in-out;
+    animation-name: example;
+    animation-duration: 3s;
+    
+}
+@keyframes example {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+    from {background-image:linear-gradient(to right, #20948B, #6AB187);}
+    to {background-image:linear-gradient(to right, #6AB187, #20948B); ;}
+  }
+.user span{
+    color: white;
+    font-size: 50px;
+    text-shadow: -2px 2px 0 #20948B,
+                2px 2px 0 #6AB187,
+                2px -2px 0 #20948B,
+                -2px -2px 0 #6AB187;
 }
