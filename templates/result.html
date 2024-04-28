@@ -11,14 +11,14 @@
     </div>
     <div class="container">
         <div class="content">
-            <h1>Hello {{ userData.name }}</h1>
+            <h1 class="user">Hello, <span>{{ userData.name }}</span></h1>
             <h3 class="perc">Your percentage of chance to get placed : <span>{{ pro }}</span></h3></h3>
             {% if pro < 50 %}
-                <h3>Your chances of getting placed are <span class="prob">below average</span><br></h3>
+                <h3 class="chance ">Your chances of getting placed are <span class="prob">below average</span><br></h3>
                 <p class="rec">Here are some recommendatons to improve</p>                
                 <div class="result">
                 {% for r in rec %}
-                    <p>{{r}}</p>
+                    <h4 class="recomendation">{{r}}</h4>
                 {% endfor %}
                 </div>              
             {% endif %}
@@ -27,7 +27,7 @@
                 <p class="rec">Here are list of companies that  you have chance to get placed</p>                
                 <div class="result">
                 {% for r in rec %}
-                    <p>{{r}}</p>
+                    <h4 class="company">{{r}}</h4>
                 {% endfor %}
                 </div>              
             {% endif %}
