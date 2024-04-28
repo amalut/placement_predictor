@@ -42,11 +42,11 @@
         async function com_test(user_id) {
             window.location.href = `/communication/${user_id}`;
         }
-        async function drives() {
-            window.location.href = '/drives';
+        async function drives(user_id) {
+            window.location.href = `/drives/${user_id}`;
         }
-        async function pyqpapers() {
-            window.location.href = '/pqpapers';
+        async function pyqpapers(user_id) {
+            window.location.href = `/pqpapers/${user_id}`;
         }
     </script>
     <script>
@@ -63,8 +63,8 @@
 <body>
     <div class="menu">
         <h1 class="logo">PLACEMENT PREDICTOR</h1>
-        <button class="menu-item" onclick="pyqpapers()">Career Resources</button>
-        <button class="menu-item" onclick="drives()">Upcoming Drives</button>
+        <button class="menu-item" onclick="pyqpapers('{{user_id}}')">Career Resources</button>
+        <button class="menu-item" onclick="drives('{{user_id}}')">Upcoming Drives</button>
         <button class="menu-item"><a class="logout-link" href="/">Logout</a></button>
     </div>
     <div class="profile">
@@ -74,7 +74,7 @@
             {% if userData %}
                 <p class="para-value">{{ userData.name }}</p>
                 <div class="wrapper-left">
-                    <p class="para">Email: <p class="wr-value">{{ userEmail }}</p></p>
+                    <p class="para">Email: <p class="wr-value">{{ userData.email }}</p></p>
                     {% if userData.age %}
                         <p class="para">Age: <p class="wr-value">{{ userData.age }}</p></p>
                     {% endif %}

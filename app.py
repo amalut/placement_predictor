@@ -57,7 +57,7 @@ def login():
         decoded_token = auth.verify_id_token(id_token)
         user_email = decoded_token['email']
         user_id = response_data.get('localId')
-        return redirect(url_for('home_page', user_email=user_email, user_id=user_id))
+        return redirect(url_for('home_page', user_id=user_id))
     else:
         error_message = response_data.get('error', {}).get('message', 'Unknown error')
         return render_template('login.html', error=error_message)
@@ -80,7 +80,8 @@ def signup_page():
         user = auth.create_user(email=email, password=password)
         user_id = user.uid
         print(user.email)
-        return redirect(url_for('form', user_id=user_id, user_email=email))
+        db.collection('users').document(user_id).set({'email': email})
+        return redirect(url_for('form', user_id=user_id))
     except Exception as e:
         error_message = str(e)
         return render_template('signup.html', error=error_message)
@@ -132,31 +133,31 @@ def submit_placement():
         error_message = 'Error adding new placement: {}'.format(e)
         return render_template('placement_form.html', error=error_message)
 
-@app.route('/form/<user_id>/<user_email>')
-def form(user_id, user_email):
-    return render_template('form.html', user_id=user_id, user_email=user_email)
+@app.route('/form/<user_id>')
+def form(user_id):
+    return render_template('form.html', user_id=user_id)
 
-@app.route('/submit_form/<user_id>/<user_email>', methods=['POST'])
-def submit_form(user_id, user_email):
+@app.route('/submit_form/<user_id>', methods=['POST'])
+def submit_form(user_id):
     try:
         formData = request.form.to_dict()
         formData['aptitude'] = 0
         formData['communication'] = 0
-        db.collection('users').document(user_id).set(formData)
-        return redirect(url_for('home_page', user_id=user_id, user_email=user_email))
+        db.collection('users').document(user_id).set(formData, merge=True)
+        return redirect(url_for('home_page', user_id=user_id))
     except Exception as e:
         error_message = str(e)
         return render_template('form.html', error=error_message)
 
-@app.route('/home/<user_id>/<user_email>')
-def home_page(user_id, user_email):
+@app.route('/home/<user_id>')
+def home_page(user_id):
     try:
         user_ref = db.collection('users').document(user_id)
         user_doc = user_ref.get()
         
         if user_doc.exists:
             userData = user_doc.to_dict()
-            return render_template('home.html', user_id=user_id, userData=userData, userEmail=user_email)
+            return render_template('home.html', user_id=user_id, userData=userData)
         else:
             return "User data not found"
     except Exception as e:
@@ -192,20 +193,20 @@ def predict(user_id):
         user_ref.update({'placement_chance': pro})
         user_ref.update({'placement_pre': pre})
         recommendations = recommend_for_student(prob[0][1],new_student_features, average_values)
-        return redirect(url_for('result', prediction=pre, pro=pro,rec=json.dumps(recommendations), userData=urlencode({'userData': json.dumps(userData)})))
+        return redirect(url_for('result', user_id=user_id, prediction=pre, pro=pro,rec=json.dumps(recommendations), userData=urlencode({'userData': json.dumps(userData)})))
 
     else:
         return "User data not found"
 
-@app.route('/result/<prediction>/<pro>/<userData>/<rec>')
-def result(prediction, pro, userData,rec):
+@app.route('/result/<user_id><prediction>/<pro>/<userData>/<rec>')
+def result(user_id,prediction, pro, userData,rec):
     if rec:
         try:
             rec = json.loads(rec) # Convert the string back to a list
         except json.JSONDecodeError:
             rec = []  # Set rec to an empty list if decoding fails
     userData = json.loads(parse_qs(userData)['userData'][0])  # convert the stringified dictionary back to a dictionary
-    return render_template('result.html', rec=rec, prediction=prediction, pro=float(pro), userData=userData)
+    return render_template('result.html', rec=rec, prediction=prediction, pro=float(pro), userData=userData,user_id=user_id)
     
     
 @app.route('/aptitude/<user_id>', methods=['GET', 'POST'])
@@ -313,15 +314,15 @@ def upload_resume():
             return redirect(url_for('resume'))
     return render_template('resume/upload.html')
 
-@app.route('/drives')
-def drives():
+@app.route('/drives/<user_id>')
+def drives(user_id):
     newplacements = db.collection('newplacements').stream()
-    return render_template('drive.html', newplacements=newplacements)
+    return render_template('drive.html', newplacements=newplacements,user_id=user_id)
 
-@app.route('/pqpapers')
-def pqpapers():
+@app.route('/pqpapers/<user_id>')
+def pqpapers(user_id):
     papers = get_paper_list()
-    return render_template('previousqp/index.html', papers=papers)
+    return render_template('previousqp/index.html', papers=papers,user_id=user_id)
 
 # Route to download a paper
 @app.route('/downloadqp/<filename>')
