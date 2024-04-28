@@ -54,7 +54,10 @@ body{
 	display: inline-block;
     width: 40%;
     margin: 10px;
-    padding: 30px;
+    padding-top: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-bottom: 10px;
     background-color: #a6240d;
     margin-bottom: 50px;
     border-radius: 20px;
@@ -66,6 +69,7 @@ body{
     padding: 10px;
     border-radius: 5px;
     color: white;
+    margin-top: 10px;
 
 }
 .btn:hover{
@@ -75,4 +79,15 @@ body{
 }
 .l-date{
     margin-bottom: 20px;
+}
+#view-more{
+margin-left:340px;
+margin-top: 20px; 
+color: white;
+background:none;
+border: 0px; 
+}
+
+#view-more:hover{
+    color: blue;
 }
