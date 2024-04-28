@@ -4,7 +4,6 @@ from firebase_admin import credentials, firestore, auth
 import requests
 import pandas as pd
 import pickle
-from mcq import app as mcq_app
 from mcq import questions_list
 from mcq import *
 from grammar_assessment import *

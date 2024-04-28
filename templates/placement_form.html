@@ -15,16 +15,16 @@
     <div class="form">
         <form action="/postnewplacement" method="POST">
             <label for="company">Company Name:</label><br>
-            <input type="text" id="company" name="cname"><br>
+            <input type="text" id="company" name="cname" required><br>
             <label for="company">Location:</label><br>
-            <input type="text" id="location" name="location"><br>
-            <label for="lpa">Position</label><br>
-            <input type="text" id="Position" name="Position"><br>
-            <label for="criteria">Criteria</label><br>
-            <input type="text" id="criteria" name="criteria"><br>
-            <label for="date">Date</label><br>
-            <input type="date" id="date" name="date"><br>
-            <label for="lpa">Branches</label><br>
+            <input type="text" id="location" name="location" required><br>
+            <label for="lpa">Position:</label><br>
+            <input type="text" id="Position" name="position" required><br>
+            <label for="criteria">Description:</label><br>
+            <input type="text" id="desc" name="desc" required><br>
+            <label for="date">Date of Drive:</label><br>
+            <input type="date" id="date" name="date" required><br>
+            <label for="lpa">Branches:</label><br>
             <select class="small-input" name="dept" id="dept" required>
                 <option value="">Select</option>
                 <option value="Computer Science">Computer Science</option>
@@ -34,13 +34,13 @@
                 <option value="Mechanical">Mechanical Engineering</option>
                 <option value="Civil">Civil Engineering</option>
             </select><br>
-            <label for="lpa">Salary</label><br>
-            <input type="text" id="lpa" name="salary"><br>
-            <label for="lpa">Last date for registration</label><br>
-            <input type="date" id="l-date" name="lastdate"><br>
+            <label for="lpa">Salary:</label><br>
+            <input type="text" id="lpa" name="salary" required><br>
+            <label for="lpa">Last date for registration:</label><br>
+            <input type="date" id="l-date" name="lastdate" required><br>
             <!--<a href="https://docs.google.com/forms/u/0/?tgif=d&ec=asw-forms-globalnav-goto">create form</a><br> -->
-            <label for="form">form link</label><br>
-            <input type="url" id="form" name="reg-form"><br>
+            <label for="form">form link:</label><br>
+            <input type="url" id="form" name="reg-form" required><br>
             <button class="submit" type="submit">Submit</button>
             
         </form>
