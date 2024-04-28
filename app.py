@@ -1,10 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify
+from flask import Flask, render_template, request, redirect, url_for, send_file, jsonify, abort
 import firebase_admin
 from firebase_admin import credentials, firestore, auth
 import requests
 import pandas as pd
 import pickle
-from mcq import app as mcq_app
 from mcq import questions_list
 from mcq import *
 from grammar_assessment import *
@@ -13,6 +12,7 @@ from urllib.parse import urlencode
 from urllib.parse import parse_qs
 from model import average_values
 from recommendation import recommend_for_student
+from pyq import get_paper_list
 import os
 import base64
 
@@ -269,7 +269,7 @@ def resume():
     resume_templates = os.listdir(app.config['UPLOAD_FOLDER'])
     return render_template('resume/index.html', resume_templates=resume_templates)
 
-@app.route('/view/<filename>', methods=['GET'])
+app.route('/view/<filename>', methods=['GET'])
 def view_resume(filename):
     return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), as_attachment=False)
 
@@ -303,6 +303,28 @@ def upload_resume():
 def drives():
     newplacements = db.collection('newplacements').stream()
     return render_template('drive.html', newplacements=newplacements)
+
+@app.route('/pqpapers')
+def pqpapers():
+    papers = get_paper_list()
+    return render_template('previousqp/index.html', papers=papers)
+
+# Route to download a paper
+@app.route('/downloadqp/<filename>')
+def download_paper(filename):
+    papers_dir = 'papers/'
+    if os.path.isfile(os.path.join(papers_dir, filename)):
+        return send_file(os.path.join(papers_dir, filename), as_attachment=True)
+    else:
+        abort(404)
+
+@app.route('/viewqp/<filename>')
+def view_paper(filename):
+    papers_dir = 'papers/'
+    if os.path.isfile(os.path.join(papers_dir, filename)):
+        return send_file(os.path.join(papers_dir, filename), mimetype='application/pdf', as_attachment=False)
+    else:
+        abort(404)
 
 if __name__ == '__main__':
     app.run(debug=True)

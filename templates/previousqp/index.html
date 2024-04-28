@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previous Question Papers</title>
+</head>
+<body>
+    <h1>Previous Question Papers</h1>
+    <ul>
+        {% for paper in papers %}
+            <li><a href="/viewqp/{{ paper.filename }}">{{ paper.name }}</a>&nbsp;<a href="/downloadqp/{{ paper.filename }}">Download</a></li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

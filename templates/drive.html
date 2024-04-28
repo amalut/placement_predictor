@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Placements</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='drive.css') }}">
+    <script>
+        function toggleDetails(link) {
+            var details = link.nextElementSibling;
+            if (details.style.display === "none") {
+                details.style.display = "block";
+                link.textContent = "View Less";
+            } else {
+                details.style.display = "none";
+                link.textContent = "View More";
+            }
+        }
+    </script>
 </head>
 <body>
     <div class="menu">
@@ -19,15 +31,18 @@
         {% for doc in newplacements %}
         <div class="placement-list">
             {% set placement = doc.to_dict() %}
-            <h3 style="padding-bottom: 20px;">Company Name : {{ placement['cname'] }}</h3>
+            <h3 style="padding-bottom: 20px;">{{ placement['cname'] }}</h3>
             <p>Location : {{ placement['location'] }}</p>
             <p>Position : {{ placement['position'] }}</p>
-            <p>Criteria : {{ placement['criteria'] }}</p>
-            <p>Date of Drive : {{ placement['date'] }}</p>
-            <p>Branches allowed : {{ placement['dept'] }}</p>
-            <p>Slary offering : {{ placement['salary'] }}</p>
-            <p class="l-date">Last date of apply : {{ placement['lastdate'] }}</p>
             <a class="btn" href="{{ placement['reg-form'] }}">Apply</a>
+            <a class="view-more" href="#" onclick="toggleDetails(this)">View More</a>
+            <div class="additional-details" style="display: none;">
+                <p>Description : {{ placement['desc'] }}</p>
+                <p>Date of Drive : {{ placement['date'] }}</p>
+                <p>Branches allowed : {{ placement['dept'] }}</p>
+                <p>Salary offering : {{ placement['salary'] }}</p>
+                <p class="l-date">Last date of apply : {{ placement['lastdate'] }}</p>
+            </div>
         </div>
         {% endfor %}
     </div>
