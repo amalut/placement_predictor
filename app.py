@@ -240,14 +240,24 @@ def record(user_id):
             print("Say something...")
             recognizer = sr.Recognizer()
             recognizer.adjust_for_ambient_noise(source)
-            audio = recognizer.listen(source, timeout=120)
+            audio = recognizer.listen(source, timeout=20)
         print("Stopped")
         transcribed_text = transcribe_audio(audio)
-        #transcribed_text="myself ihjazzul Aslam final year b tech student at gec palakkad"
+        print(transcribed_text)
+        #test_text="myself ihjazzul Aslam final year b tech student at gec palakkad"
         grammar_marks = calculate_grammar_marks(transcribed_text)
-        score=round(grammar_marks/100*10,2)
+        print(grammar_marks)
+        grammar_marks=grammar_marks*0.9
+        semantic_mark=calculate_semantic_score(transcribed_text)
+        print(semantic_mark)
+        semantic_mark=semantic_mark*0.1
 
-        print("Grammer score:",score)
+        total=semantic_mark+grammar_marks
+        score=round(total*0.1,2)
+
+        print("Grammer score:",grammar_marks)
+        print("Semantic mark:",semantic_mark)
+        print("score:",score)
         with open("transcribed_text.txt", "w") as file:
             file.write(transcribed_text)
 
@@ -258,9 +268,13 @@ def record(user_id):
                 'communication': score
             }, merge=True)
 
-            return render_template('communication/grammar_mark.html', score=score, grammar_marks=grammar_marks,user_id=user_id)
+            return render_template('communication/grammar_mark.html', score=score, total=total,user_id=user_id)
 
         # Store transcribed text in a text file
+    except sr.WaitTimeoutError:
+        # This exception will be raised when the recording reaches the timeout
+        print("Recording stopped after 120 seconds")
+
     except Exception as e:
         return str(e)
     
