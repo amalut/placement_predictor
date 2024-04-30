@@ -48,10 +48,8 @@ def login():
         "password": password,
         "returnSecureToken": True
     }
-
     response = requests.post(f"https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key={API_KEY}", json=data)
     response_data = response.json()
-
     if response.ok:
         id_token = response_data.get('idToken')
         decoded_token = auth.verify_id_token(id_token)
@@ -241,13 +239,14 @@ def record(user_id):
             print("Say something...")
             recognizer = sr.Recognizer()
             recognizer.adjust_for_ambient_noise(source)
-            audio = recognizer.listen(source, timeout=20)
+            audio = recognizer.listen(source, timeout=60)
         print("Stopped")
         transcribed_text = transcribe_audio(audio)
         print(transcribed_text)
         #test_text="myself ihjazzul Aslam final year b tech student at gec palakkad"
-        grammar_marks = calculate_grammar_marks(transcribed_text)
+        grammar_marks,tot_words = calculate_grammar_marks(transcribed_text)
         print(grammar_marks)
+        print(tot_words)
         grammar_marks=grammar_marks*0.9
         semantic_mark=calculate_semantic_score(transcribed_text)
         print(semantic_mark)
@@ -262,14 +261,18 @@ def record(user_id):
         with open("transcribed_text.txt", "w") as file:
             file.write(transcribed_text)
 
-        if user_id:
-            # Update the user document in Firestore with the new aptitude score
-            user_ref = db.collection('users').document(user_id)
-            user_ref.set({
-                'communication': score
-            }, merge=True)
+        if tot_words>50:
+            if user_id:
+                # Update the user document in Firestore with the new aptitude score
+                user_ref = db.collection('users').document(user_id)
+                user_ref.set({
+                    'communication': score
+                }, merge=True)
 
-            return render_template('communication/grammar_mark.html', score=score, total=total,user_id=user_id)
+                return render_template('communication/grammar_mark.html', score=score, total=total,user_id=user_id)
+        else:
+            error="Audio not clear,You have to speak atleast 50 words"
+            return render_template('communication/grammar_test.html', error=error)
 
         # Store transcribed text in a text file
     except sr.WaitTimeoutError:
@@ -277,7 +280,7 @@ def record(user_id):
         print("Recording stopped after 120 seconds")
 
     except Exception as e:
-        return str(e)
+        return render_template('communication/grammar_test.html', error=str(e))
     
 @app.route('/resume')
 def resume():

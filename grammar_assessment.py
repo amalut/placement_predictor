@@ -24,7 +24,7 @@ def calculate_grammar_marks(text):
     total_words = len(text.split())
     print(f"Total:{total_words} Gramemr errors:{grammar_errors}")
     grammar_marks = max(0, total_words - grammar_errors) / total_words * 100
-    return grammar_marks
+    return grammar_marks,total_words
 
 def calculate_semantic_score(text):
     # Tokenize the text into words

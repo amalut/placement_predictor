@@ -140,9 +140,10 @@
     </div>
     <div class="container">
         <h1>Communication Assessment Test</h1>
-        <p>Introduce yourself in 120 seconds:</p>
+        <p>Introduce yourself in 60 seconds:</p>
         <div id="message"></div>
         <div id="app"></div>
+        <div id="error">{{error}}</div>
         <form action="/record/{{ user_id }}" method="post" onsubmit="startRecording()">
             <button id="record-btn" type="submit">Record Audio</button>
         </form>
@@ -167,7 +168,7 @@
             }
             };
 
-            const TIME_LIMIT = 120;
+            const TIME_LIMIT = 60;
             let timePassed = 0;
             let timeLeft = TIME_LIMIT;
             let timerInterval = null;
