@@ -37,7 +37,10 @@ h1{
     padding: 5px;
     border-radius: 5px;
 }
-
+.viewp{
+    text-decoration: none;
+    color: black;
+}
 .menu{
     background-color: #FF4B2B;
     width: 15%;
