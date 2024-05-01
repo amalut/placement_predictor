@@ -22,6 +22,10 @@ body{
     color: white;
     position: sticky;
 }
+.logout-link{
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherits color from parent element */
+}
 .menu-item{
     font-size: large;
     color: white;
