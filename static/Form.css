@@ -3,7 +3,7 @@
 	box-sizing: border-box;
 }
 body {
-	background-image: url(./images/form2.1.jpg);
+	background-image: url(./images/f3.jpg);
     background-size: cover;
 	display: flex;
 	justify-content: center;
@@ -14,7 +14,7 @@ body {
     color: white;
 }
 input, select {
-	background-color: rgba(193, 190, 190,0.5);
+	background-color: rgba(193, 190, 190,0.7);
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;
@@ -35,20 +35,22 @@ button {
     margin: 0;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 75%;
     -ms-transform: translate(-50%, -100%);
     transform: translate(-280%, 760%);
 }
 h1{
     text-align: center;
-    color: #FF4B2B;
+    color: #ffffff;
 }
 h3{
-    padding-left: 90px;
-    color: #FF4B2B;
+    padding-left: 25%;
+    color: #ffffff;
 }
 .div-form{
-    color: black;
+    margin-left: 25%;
+    background-color: rgb(0, 0, 0,0.5);
+    color: rgb(255, 255, 255);
     border-radius: 48px;
     float: left;
     width: 850px;
@@ -58,7 +60,7 @@ h3{
     
 }
 .form-label{
-    margin-right: 8px;
+    margin-right: 5px;
     font-size: 13px;
 }
 .form-input{
