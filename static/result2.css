@@ -70,6 +70,29 @@ a{
     text-align: center;
     border-color:crimson
 } */
+
+.company{
+    background-image: linear-gradient(to right, #1C1C1BFF, #CE4A7EFF) ;
+    padding: 20px;
+    color: #f6f5f7;
+    animation: example 3s;
+    animation-direction:alternate;
+    animation-timing-function: ease-in-out;
+    animation-name: example1;
+    animation-duration: 3s;
+    
+}
+@keyframes example1 {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+    from {background-image:linear-gradient(to right, #CE4A7EFF, #1C1C1BFF);}
+    to {background-image:linear-gradient(to right, #1C1C1BFF, #CE4A7EFF); ;}
+  }
+
 .recomendation{
     background-image: linear-gradient(to right, #20948B, #6AB187) ;
     padding: 20px;
