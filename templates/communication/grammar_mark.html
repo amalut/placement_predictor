@@ -57,13 +57,15 @@
             background-color:rgba(255, 255, 255, 0.5);
             
         }
+        .logout-link{
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherits color from parent element */
+}
     </style>
 </head>
 <body>
     <div class="menu">
         <h1 class="logo">PLACEMENT PREDICTOR</h1>
-        <button class="menu-item">Courses</button>
-        <button class="menu-item" onclick="drives()">Upcoming Drives</button>
         <button class="menu-item"><a class="logout-link" href="/home/{{user_id}}">Back to Home</a></button>
     </div>
     <h1>Communication Assessment Result</h1>

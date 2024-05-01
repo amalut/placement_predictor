@@ -13,7 +13,10 @@ body {
 	height: 100vh;
 	margin: -20px 0 50px;
 }
-
+.logout-link{
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherits color from parent element */
+}
 .tbl{
     width: 100%;
     border: 2px solid;

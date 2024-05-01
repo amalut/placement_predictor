@@ -123,6 +123,10 @@
   justify-content: center;
   font-size: 48px;
 }
+.logout-link{
+    text-decoration: none; /* Removes underline */
+    color: inherit; /* Inherits color from parent element */
+}
     </style>
     <script>
         function startRecording() {
@@ -134,9 +138,7 @@
 <body>
     <div class="menu">
         <h1 class="logo">PLACEMENT PREDICTOR</h1>
-        <button class="menu-item">Courses</button>
-        <button class="menu-item" onclick="drives()">Upcoming Drives</button>
-        <button class="menu-item"><a class="logout-link" href="/">Logout</a></button>
+        <button class="menu-item"><a class="logout-link" href="/home/{{user_id}}">Back</a></button>
     </div>
     <div class="container">
         <h1>Communication Assessment Test</h1>
