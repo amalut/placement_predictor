@@ -120,13 +120,18 @@ def ad_home():
 def placement():
     return render_template('placement_form.html')
 
+@app.route('/submit_success')
+def submit_success():
+    msg="Successfully Added New Placement Drive"
+    return render_template('placement_form.html',msg=msg)
+
 @app.route('/postnewplacement', methods=['POST'])
 def submit_placement():
     try:
         formData = request.form.to_dict()
         new_placement = db.collection('newplacements').document()
         new_placement.set(formData)
-        return redirect(url_for('ad_home'))
+        return redirect(url_for('submit_success'))
     except Exception as e:
         error_message = 'Error adding new placement: {}'.format(e)
         return render_template('placement_form.html', error=error_message)
@@ -271,7 +276,7 @@ def record(user_id):
 
                 return render_template('communication/grammar_mark.html', score=score, total=total,user_id=user_id)
         else:
-            error="Audio not clear,You have to speak atleast 50 words"
+            error="Audio is not clear,You have to speak atleast 50 words"
             return render_template('communication/grammar_test.html', error=error)
 
         # Store transcribed text in a text file
@@ -280,7 +285,8 @@ def record(user_id):
         print("Recording stopped after 120 seconds")
 
     except Exception as e:
-        return render_template('communication/grammar_test.html', error=str(e))
+        error="Could not understand audio"
+        return render_template('communication/grammar_test.html', error=error)
     
 @app.route('/resume')
 def resume():

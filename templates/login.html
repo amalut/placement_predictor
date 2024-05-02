@@ -12,6 +12,11 @@
         <div class="container">
             <div class="form-container .sign-in-container">
                 <h1 class="mb-4">Placement Predictor</h1>
+                {% if error %}
+                    <div class="alert alert-danger mt-3" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
                 <form method="POST" action="/login" class="form-signin">
                     <h2 class="form-signin-heading">Sign in</h2>
                     <label for="inputEmail" class="sr-only">Email address</label>
@@ -21,11 +26,7 @@
                     <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                 </form>
 
-                {% if error %}
-                    <div class="alert alert-danger mt-3" role="alert">
-                        {{ error }}
-                    </div>
-                {% endif %}
+                
             </div>
             <div class="overlay-panel overlay-right">
                 <button class="admin"><a href="/admin_login">Login as admin</a></button>
