@@ -84,7 +84,7 @@ body{
 .l-date{
     margin-bottom: 20px;
 }
-#view-more{
+.view-more{
 margin-left:340px;
 margin-top: 20px; 
 color: white;
@@ -92,6 +92,6 @@ background:none;
 border: 0px; 
 }
 
-#view-more:hover{
+.view-more:hover{
     color: blue;
 }
