@@ -16,8 +16,6 @@ from pyq import get_paper_list
 import os
 
 app = Flask(__name__)
-UPLOAD_FOLDER = 'resume_templates'
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 
 API_KEY = "AIzaSyBF-gktODbomUIyPOT_MWuGqxFwDP-Mx8I"
@@ -284,7 +282,7 @@ def record(user_id):
         print("Recording stopped after 120 seconds")
 
     except Exception as e:
-        error="Could not understand audio"
+        error="Could not understand audio,Try again"
         return render_template('communication/grammar_test.html', error=error)
 
 
