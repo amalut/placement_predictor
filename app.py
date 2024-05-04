@@ -208,9 +208,12 @@ def result(user_id,prediction, pro, userData,rec):
     userData = json.loads(parse_qs(userData)['userData'][0])  # convert the stringified dictionary back to a dictionary
     return render_template('result.html', rec=rec, prediction=prediction, pro=float(pro), userData=userData,user_id=user_id)
     
-    
-@app.route('/aptitude/<user_id>', methods=['GET', 'POST'])
+
+@app.route('/instructions/<user_id>')
 def index(user_id):
+    return render_template('aptitude/apt_instructions.html',user_id=user_id)
+@app.route('/aptitude/<user_id>', methods=['GET', 'POST'])
+def aptitude(user_id):
     if request.method == 'POST':
         score = run_mcq_quiz(questions_list)
         total=len(questions_list)
@@ -228,6 +231,10 @@ def index(user_id):
             return redirect(url_for('login_page'))
 
     return render_template('aptitude/quiz.html', questions=enumerate(questions_list, 1))
+
+@app.route('/com_instructions/<user_id>')
+def com_instructions(user_id):
+    return render_template('communication/com_instructions.html',user_id=user_id)
 
 @app.route('/communication/<user_id>')
 def communication(user_id):

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='grammer_test.css') }}">
+    <script>
+        async function start_test(user_id) {
+            window.location.href = `/aptitude/${user_id}`;
+        }
+    </script>
+</head>
+<body>
+    <div class="menu">
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
+        <button class="menu-item"><a class="logout-link" href="/home/{{user_id}}" onclick="location.reload()";>Back</a></button>
+    </div>
+    <div class="container">
+        <h1>Aptitude Test</h1>
+        <h2>Instructions</h2>
+        <p>Welcome to the Aptitude Test! This test is designed to assess your aptitude in various areas. Please read the following instructions carefully before beginning the test:</p>
+        <ul>
+            <li>You will have 25 minutes to complete the test. You are not required to answer every question. You can choose to skip questions and move on to the next one. However, ensure that you manage your time effectively to answer as many questions as possible within the given time frame.</li>
+            <li>he test consists of 25 multiple-choice questions (MCQs). Each question will have four options, and you are required to select the one that you believe is the correct answer.</li>
+            <li>Monitor the time remaining as you progress through the test. The timer will start as soon as you begin, and you will have 25 minutes to complete the test. If 25 minutes elapse, the test will automatically submit, so ensure that you submit your responses before the time runs out.</li>
+            <li>Ensure that your internet connection is stable throughout the test duration. If you encounter any technical issues, please notify the test administrator immediately for assistance.</li>
+            <li>You can submit the test at any time before the 25-minute mark. Once you have completed the test or if you no longer wish to answer any more questions, click on the submit button to finalize your responses. </li>
+            <li> If time permits, review your answers before submitting the test. Ensure that you have provided answers to the questions you attempted and that you are satisfied with your choices.</li>
+            <li>Click on Start Test Button to start the quiz</li>
+        </ul>
+        <button class="btn-2" onclick="start_test('{{ user_id }}')">Start Test</button>
+    </div>
+</body>
+</html>

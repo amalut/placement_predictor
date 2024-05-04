@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Communication Test</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='grammer_test.css') }}">
+    <script>
+        async function start_comtest(user_id) {
+            window.location.href = `/communication/${user_id}`;
+        }
+    </script>
+</head>
+<body>
+    <div class="menu">
+        <h1 class="logo">PLACEMENT PREDICTOR</h1>
+        <button class="menu-item"><a class="logout-link" href="/communication/{{user_id}}" onclick="location.reload();">Start Test</a></button>
+        <button class="menu-item"><a class="logout-link" href="/home/{{user_id}}" onclick="location.reload()";>Back</a></button>
+    </div>
+    <div class="container">
+        <h1>Communication Assessment Test</h1>
+        <h2>Instructions</h2>
+        <p>Welcome to the Communication Assessment Test! This test aims to evaluate your communication skills, specifically your ability to speak fluently and coherently in English. Please read the instructions below carefully before beginning the test:</p>
+        <ul>
+            <li>You will have 30 seconds to introduce yourself continuously into the microphone. Ensure that you maintain a steady flow of speech throughout the entire duration of the test.</li>
+            <li>You are required to introduce yourself during the test. Share information about yourself such as your name, background, interests, and any other relevant details you'd like to include.</li>
+            <li>This assessment focuses on your English communication skills. Therefore, please speak in English throughout the test.</li>
+            <li>Ensure your microphone is properly set up and functioning. When you're ready to begin, click the 'record audio' button to initiate the recording. Speak clearly and directly into the microphone.</li>
+            <li>If there are pauses or breaks during your speech, the test may automatically stop, and you'll be prompted to restart. If this happens, simply  click record button again and speaking until the end of the 30-second duration.</li>
+            <li>Click start test for next page</li>
+        </ul>
+        <button class="btn-2" onclick="start_comtest('{{ user_id }}')">Start Test</button>
+    </div>
+</body>
+</html>
