@@ -7,10 +7,11 @@
     <title>Placements</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='drive.css') }}">
     <script>
-        function toggleDetails() {
-            var dots = document.getElementById("dots");
-            var moreText = document.getElementById("more");
-            var btnText = document.getElementById("view-more");
+        function toggleDetails(element) {
+            var parent = element.parentNode;
+            var dots = parent.querySelector(".dots");
+            var moreText = parent.querySelector(".more");
+            var btnText = parent.querySelector(".view-more");
             if (dots.style.display === "none") {
                 dots.style.display = "inline";
                 btnText.innerHTML = "View More"; 
@@ -38,8 +39,8 @@
             <h3 style="padding-bottom: 20px;">{{ placement['cname'] }}</h3>
             <p>Location : {{ placement['location'] }}</p>
             <p>Position : {{ placement['position'] }}</p>
-            <span id="dots">...</span>
-            <span id="more" style="display: none;">
+            <span class="dots">...</span>
+            <span class="more" style="display: none;">
                 <p>Description : {{ placement['desc'] }}</p>
                 <p>Date of Drive : {{ placement['date'] }}</p>
                 <p>Branches allowed : {{ placement['dept'] }}</p>
@@ -48,7 +49,7 @@
                 
             </span><br>
             <a class="btn" href="{{ placement['reg-form'] }}">Apply</a>
-            <button id="view-more" onclick="toggleDetails()">View More</button>
+            <button class="view-more" onclick="toggleDetails(this)">View More</button>
         </div>
         {% endfor %}
     </div>

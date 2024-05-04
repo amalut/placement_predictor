@@ -9,17 +9,16 @@
 <body>
     <div class="menu">
         <h1 class="logo">PLACEMENT PREDICTOR</h1>
-        <button class="menu-item" onclick="pyqpapers('{{user_id}}')">Career Resources</button>
-        <button class="menu-item" onclick="drives('{{user_id}}')">Upcoming Drives</button>
-        <button class="menu-item"><a class="logout-link" href="/">Logout</a></button>
+        <button class="menu-item"><a class="logout-link" href="/home/{{user_id}}">Home</a></button>
     </div>
     <h1>Career Resources</h1>
     <div class="card-container">
         {% for paper in papers %}
             <div class="card">
-                <img  src="https://logodownload.org/wp-content/uploads/2014/05/accenture-logo-0.png" alt="Avatar">
+                <!--<img  src="{{ url_for('static', filename='images/tcs.png') }}" alt="Avatar">-->
+                <img src="/static/images/{{ paper.name | lower | replace(' ','_') }}.png" alt="{{ paper.name }}">
                 <div class="content">
-                    <h4><b>{{paper.name}}</b></h4>
+                    <h4><b><a class="viewp" href="/viewqp/{{ paper.filename }}">{{paper.name}}</a></b></h4>
                     <a class="btn" href="/downloadqp/{{ paper.filename }}">Download</a>
                 </div>
             </div>

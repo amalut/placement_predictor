@@ -14,7 +14,6 @@ from model import average_values
 from recommendation import recommend_for_student
 from pyq import get_paper_list
 import os
-import base64
 
 app = Flask(__name__)
 UPLOAD_FOLDER = 'resume_templates'
@@ -120,13 +119,18 @@ def ad_home():
 def placement():
     return render_template('placement_form.html')
 
+@app.route('/submit_success')
+def submit_success():
+    msg="Successfully Added New Placement Drive"
+    return render_template('placement_form.html',msg=msg)
+
 @app.route('/postnewplacement', methods=['POST'])
 def submit_placement():
     try:
         formData = request.form.to_dict()
         new_placement = db.collection('newplacements').document()
         new_placement.set(formData)
-        return redirect(url_for('ad_home'))
+        return redirect(url_for('submit_success'))
     except Exception as e:
         error_message = 'Error adding new placement: {}'.format(e)
         return render_template('placement_form.html', error=error_message)
@@ -271,7 +275,7 @@ def record(user_id):
 
                 return render_template('communication/grammar_mark.html', score=score, total=total,user_id=user_id)
         else:
-            error="Audio not clear,You have to speak atleast 50 words"
+            error="Audio is not clear,You have to speak atleast 50 words"
             return render_template('communication/grammar_test.html', error=error)
 
         # Store transcribed text in a text file
@@ -280,42 +284,9 @@ def record(user_id):
         print("Recording stopped after 120 seconds")
 
     except Exception as e:
-        return render_template('communication/grammar_test.html', error=str(e))
-    
-@app.route('/resume')
-def resume():
-    resume_templates = os.listdir(app.config['UPLOAD_FOLDER'])
-    return render_template('resume/index.html', resume_templates=resume_templates)
+        error="Could not understand audio"
+        return render_template('communication/grammar_test.html', error=error)
 
-app.route('/view/<filename>', methods=['GET'])
-def view_resume(filename):
-    return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), as_attachment=False)
-
-@app.route('/edit/<filename>', methods=['GET', 'POST'])
-def edit_resume(filename):
-    if request.method == 'POST':
-        edited_pdf_data = request.form['edited_pdf']
-        edited_pdf_bytes = base64.b64decode(edited_pdf_data.split(",")[1])
-        edited_filename = filename.split('.')[0] + '_edited.pdf'
-        edited_file_path = os.path.join(app.config['UPLOAD_FOLDER'], edited_filename)
-        with open(edited_file_path, 'wb') as f:
-            f.write(edited_pdf_bytes)
-        return redirect(url_for('resume'))
-    return render_template('resume/edit.html', filename=filename)
-
-@app.route('/download/<filename>', methods=['GET'])
-def download_resume(filename):
-    return send_file(os.path.join(app.config['UPLOAD_FOLDER'], filename), as_attachment=True)
-
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_resume():
-    if request.method == 'POST':
-        file = request.files['resume']
-        if file:
-            filename = file.filename
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            return redirect(url_for('resume'))
-    return render_template('resume/upload.html')
 
 @app.route('/drives/<user_id>')
 def drives(user_id):
