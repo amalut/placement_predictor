@@ -8,22 +8,26 @@
     <script>
         function startRecording() {
             document.getElementById("message").innerText = "Recording... Please speak into the microphone.";
-            timer()
+            timer();
+            document.getElementById("app").style.display = "block";
+            document.getElementById("record-btn").style.display = "none";
+            document.getElementById("error-msg").style.display = "none";
         }
     </script>
 </head>
 <body>
     <div class="menu">
         <h1 class="logo">PLACEMENT PREDICTOR</h1>
-        <button class="menu-item"><a class="logout-link" href="/home/{{user_id}}">Back</a></button>
+        <button class="menu-item"><a class="logout-link" href="/communication/{{user_id}}" onclick="location.reload();">Refresh</a></button> <!-- Refresh link -->
+        <button class="menu-item"><a class="logout-link" href="/home/{{user_id}}" onclick="location.reload()";>Back</a></button>
     </div>
     <div class="container">
         <h1>Communication Assessment Test</h1>
-        <p>Introduce yourself in 60 seconds:</p>
+        <p>Introduce yourself in 30 seconds:</p>
         <div id="message"></div>
         <div id="app"></div>
         {% if error %}
-        <div class="alert alert-danger mt-3" role="alert">
+        <div id="error-msg" class="alert alert-danger mt-3" role="alert">
             {{ error }}
         </div>
         {% endif %}

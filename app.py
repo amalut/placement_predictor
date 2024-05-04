@@ -241,11 +241,11 @@ def record(user_id):
             print("Say something...")
             recognizer = sr.Recognizer()
             recognizer.adjust_for_ambient_noise(source)
-            audio = recognizer.listen(source, timeout=60)
+            audio = recognizer.listen(source, timeout=30)
         print("Stopped")
+        print("Transcribing...")
         transcribed_text = transcribe_audio(audio)
         print(transcribed_text)
-        #test_text="myself ihjazzul Aslam final year b tech student at gec palakkad"
         grammar_marks,tot_words = calculate_grammar_marks(transcribed_text)
         print(grammar_marks)
         print(tot_words)
@@ -263,7 +263,7 @@ def record(user_id):
         with open("transcribed_text.txt", "w") as file:
             file.write(transcribed_text)
 
-        if tot_words>50:
+        if tot_words>25:
             if user_id:
                 # Update the user document in Firestore with the new aptitude score
                 user_ref = db.collection('users').document(user_id)
@@ -273,17 +273,14 @@ def record(user_id):
 
                 return render_template('communication/grammar_mark.html', score=score, total=total,user_id=user_id)
         else:
-            error="Audio is not clear,You have to speak atleast 50 words"
-            return render_template('communication/grammar_test.html', error=error)
+            error="Audio is not clear,You have to speak atleast 25 words"
+            return render_template('communication/grammar_test.html', error=error,user_id=user_id)
 
         # Store transcribed text in a text file
-    except sr.WaitTimeoutError:
-        # This exception will be raised when the recording reaches the timeout
-        print("Recording stopped after 120 seconds")
 
     except Exception as e:
         error="Could not understand audio,Try again"
-        return render_template('communication/grammar_test.html', error=error)
+    return render_template('communication/grammar_test.html', error=error,user_id=user_id)
 
 
 @app.route('/drives/<user_id>')
