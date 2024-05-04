@@ -20,6 +20,7 @@ body {
     width: 15%;
     height: 100vh;
     float: left;
+    position: fixed;
 }
 .menu-item-logout {
     margin-left: 0px;
@@ -57,6 +58,7 @@ body {
     width: 100%;
     border: 2px solid;
     border-collapse:separate;
+    margin-left: 270px;
 }
 
 .tbl th{
