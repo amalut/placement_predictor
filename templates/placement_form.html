@@ -14,44 +14,50 @@
     </div>
     <div class="form">
         <form action="/postnewplacement" method="POST">
-            <label for="company">Company Name:</label><br>
-            <input type="text" id="company" name="cname" required><br>
-            <label for="company">Location:</label><br>
-            <input type="text" id="location" name="location" required><br>
-            <label for="lpa">Position:</label><br>
-            <input type="text" id="Position" name="position" required><br>
-            <label for="criteria">Description:</label><br>
-            <input type="text" id="desc" name="desc" required><br>
-            <label for="date">Date of Drive:</label><br>
-            <input type="date" id="date" name="date" required><br>
-            <label for="lpa">Branches:</label><br>
-            <select class="small-input" name="dept" id="dept" required>
-                <option value="">Select</option>
-                <option value="Computer Science">Computer Science</option>
-                <option value="Information Technology">Information Technology</option>
-                <option value="Electronics And Communication">Electronics & Communication</option>
-                <option value="Electrical">Electrical & Electronics</option>
-                <option value="Mechanical">Mechanical Engineering</option>
-                <option value="Civil">Civil Engineering</option>
-            </select><br>
-            <label for="lpa">Salary:</label><br>
-            <input type="text" id="lpa" name="salary" required><br>
-            <label for="lpa">Last date for registration:</label><br>
-            <input type="date" id="l-date" name="lastdate" required><br>
-            <!--<a href="https://docs.google.com/forms/u/0/?tgif=d&ec=asw-forms-globalnav-goto">create form</a><br> -->
-            <label for="form">form link:</label><br>
-            <input type="url" id="form" name="reg-form" required><br>
-            <button class="submit" type="submit">Submit</button>
-            {% if error %}
-                    <div class="alert alert-danger mt-3" role="alert">
-                        {{ error }}
-                    </div>
-            {% endif %}
-            {% if msg %}
-            <div class="success mt-3" role="msg">
-                {{ msg }}
+            <div class="main-section">
+                <div class="section1">
+                    <label for="company">Company Name:</label><br>
+                    <input class="inp-box" type="text" id="company" name="cname" required><br>
+                    <label for="company">Location:</label><br>
+                    <input class="inp-box" type="text" id="location" name="location" required><br>
+                    <label for="lpa">Position:</label><br>
+                    <input class="inp-box" type="text" id="Position" name="position" required><br>
+                    <label for="criteria">Description:</label><br>
+                    <input class="inp-box" type="text" id="desc" name="desc" required><br>
+                    <label for="date">Date of Drive:</label><br>
+                    <input class="inp-box" type="date" id="date" name="date" required><br>
+                    <label for="lpa">Branches:</label><br>
+                    <label><input type="checkbox" class="small-input" name="dept" value="Computer Science"> Computer Science</label><br>
+                    <label><input type="checkbox" class="small-input" name="dept" value="Information Technology"> Information Technology</label><br>
+                    <label><input type="checkbox" class="small-input" name="dept" value="Electronics And Communication"> Electronics & Communication</label><br>
+                    <label><input type="checkbox" class="small-input" name="dept" value="Electrical"> Electrical & Electronics</label><br>
+                    <label><input type="checkbox" class="small-input" name="dept" value="Mechanical"> Mechanical Engineering</label><br>
+                    <label><input type="checkbox" class="small-input" name="dept" value="civil"> Civil Engineering</label><br>
+                </div>
+                <div class="section2">
+                    <label for="lpa">Salary:</label><br>
+                    <input class="inp-box" type="text" id="lpa" name="salary" required><br>
+                    <label for="lpa">Last date for registration:</label><br>
+                    <input class="inp-box" type="date" id="l-date" name="lastdate" required><br>
+                    <!--<a href="https://docs.google.com/forms/u/0/?tgif=d&ec=asw-forms-globalnav-goto">create form</a><br> -->
+                    <label for="form">form link:</label><br>
+                    <input class="inp-box" type="url" id="form" name="reg-form" required><br>
+                    <button class="submit" type="submit">Submit</button>
+                    {% if error %}
+                        <div class="alert alert-danger mt-3" role="alert">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    {% if msg %}
+                        <div class="success mt-3" role="msg">
+                        {{ msg }}
+                        </div>
+                    {% endif %}
+                </div>
             </div>
-        {% endif %}
+            
+
+            
         </form>
     </div>
 </body>
