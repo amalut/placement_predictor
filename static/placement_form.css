@@ -8,7 +8,7 @@ label{
     font-size: 15px;
     padding-bottom: 20px;
 }
-input, select{
+.inp-box, select{
     border-radius: 5px;
     border-color: #952bff;
     padding: 10px;
@@ -27,6 +27,7 @@ input, select{
     border-color: #952bff;
     background-color: white;
 }
+
 button:hover{
     background-color: #952bff;
     color: white;
@@ -95,4 +96,13 @@ button:hover{
 
 .mt-3 {
     margin-top: 1rem;
+}
+.small-input{
+    margin: 10px;
+}
+.main-section{
+    display:flex;
+}
+.section1{
+    margin-right: 50px;
 }
