@@ -30,12 +30,13 @@
         <button class="menu-item"><a class="logout-link" href="/home/{{user_id}}">Back</a></button>
     </div>
     <div class="title">
-        <h2 class="t1">Upcoming Drives</h2>
+        <h2 class="t1">Upcoming Drives {{dept}}</h2>
     </div>
     <div class="container">
         {% for doc in newplacements %}
+        {% set placement = doc.to_dict() %}
+        {% if dept in placement['dept'] %}
         <div class="placement-list">
-            {% set placement = doc.to_dict() %}
             <h3 style="padding-bottom: 20px;">{{ placement['cname'] }}</h3>
             <p>Location : {{ placement['location'] }}</p>
             <p>Position : {{ placement['position'] }}</p>
@@ -51,6 +52,7 @@
             <a class="btn" href="{{ placement['reg-form'] }}">Apply</a>
             <button class="view-more" onclick="toggleDetails(this)">View More</button>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
 </body>

@@ -126,6 +126,8 @@ def submit_success():
 def submit_placement():
     try:
         formData = request.form.to_dict()
+        departments = request.form.getlist('dept')
+        formData['dept'] = ', '.join(departments)
         new_placement = db.collection('newplacements').document()
         new_placement.set(formData)
         return redirect(url_for('submit_success'))
@@ -292,8 +294,13 @@ def record(user_id):
 
 @app.route('/drives/<user_id>')
 def drives(user_id):
+    user_ref = db.collection('users').document(user_id)
+    user_doc = user_ref.get()
+    if user_doc.exists:
+        userData = user_doc.to_dict()
+    dept=userData['dept']
     newplacements = db.collection('newplacements').stream()
-    return render_template('drive.html', newplacements=newplacements,user_id=user_id)
+    return render_template('drive.html', dept=dept,newplacements=newplacements,user_id=user_id)
 
 @app.route('/pqpapers/<user_id>')
 def pqpapers(user_id):
