@@ -1,7 +1,5 @@
-from flask import Flask, render_template, request
+from flask import request
 import random
-
-app = Flask(__name__)
 
 class MultipleChoiceQuestion:
     def __init__(self, question, options, correct_option):

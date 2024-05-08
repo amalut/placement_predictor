@@ -5,7 +5,7 @@ import requests
 import pandas as pd
 import pickle
 from mcq import questions_list
-from mcq import *
+from mcq import run_mcq_quiz
 from grammar_assessment import *
 import json
 from urllib.parse import urlencode
